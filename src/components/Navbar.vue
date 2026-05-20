@@ -1,42 +1,165 @@
 <template>
-  <header class="w-full flex justify-between px-2 bg-gray-400 md:px-8 lg:px-24 py-7">
-    <!-- Menu -->
-    <ul class="hidden lg:flex items-center    ">
-      <li v-for="item in menu"  :key="item.name" class="px-3 py-2 rounded-xl hover:bg-blue-400 cursor-pointer hover:scale-110 transition-all duration-300 ease-in-out ">
-         <a  class="font-medium font-bold text-2xl"  :href="item.link"> {{ item.name }} </a>
+  <header
+    class="w-full flex items-center justify-between
+    px-4 md:px-8 lg:px-20
+    py-4 bg-gray-100 shadow-sm position-sticky z-50 top-1"
+  >
+
+    <!-- LEFT MENU -->
+    <ul class="​ hidden lg:flex    items-center gap-6 m-0 p-0">
+      <li
+        v-for="item in menu"
+        :key="item.name"
+        class=" list-none    transition"
+      >
+        <a class="text-black  no-underline nav-link "  :href="item.link">
+          {{ item.name }}
+        </a>
       </li>
     </ul>
-    <!-- Logo -->
-     <div class="flex gap-1">
-         <button class="lg:hidden block bg-secondary "><i class="bi bi-list text-2xl"></i></button>
-         <a href="" class="text-2xl md:text-2xl text-center lg:text-4xl font-serif text-black">PANSAP. </a>
-     </div>
-    <!-- Search -->
-    <div class="hidden lg:flex items-center border rounded-md px-4 py-2 md:my-0  w-[220px]">
-      <i class="bi bi-search text-gray-500 mr-3"></i>
-      <input
-        type="search"
-        placeholder="Search"
-        class="outline-none w-full text-sm"/>
-    </div>
-    <!-- Buttons -->
-    <div class="flex gap-5  md:gap-10 md:my-0">
-        <div class="flex items-center gap-4  md:gap-8 text-xl md:text-2xl">
-        <i class="bi bi-search cursor-pointer hover:text-gray-500"></i>
-        <i class="bi bi-bell cursor-pointer hover:text-gray-500"></i>
-        <i class="bi bi-heart cursor-pointer hover:text-gray-500"></i>
-        <i class="bi bi-bag cursor-pointer hover:text-gray-500"></i>
-        <i class="bi bi-person cursor-pointer hover:text-gray-500"></i>
+
+    <!-- LOGO + MOBILE MENU -->
+    <div class="flex items-center gap-2">
+
+      <!-- Mobile Button -->
+      <button
+        class="lg:hidden block"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling"
+      >
+        <i class="bi bi-list text-2xl"></i>
+      </button>
+
+      <!-- Offcanvas -->
+      <div
+        class="offcanvas offcanvas-start"
+        data-bs-scroll="true"
+        data-bs-backdrop="false"
+        tabindex="-1"
+        id="offcanvasScrolling"
+      >
+
+        <div class="offcanvas-header">
+
+          <h5 class="offcanvas-title fw-bold">
+            PANSAP.
+          </h5>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+          ></button>
+
+        </div>
+
+        <div class="offcanvas-body">
+
+          <ul class="flex flex-col gap-4 p-0">
+
+            <li
+              v-for="item in menu"
+              :key="item.name"
+              class="list-none"
+            >
+              <a
+                class="text-black no-underline text-lg nav-link transition"
+                :href="item.link"
+              >
+                {{ item.name }}
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
       </div>
-      <button class="bg-black hidden  lg:block text-white  px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-        Login
-      </button>
-      <button class="bg-black hidden  lg:block   text-white px-4 py-2  rounded-lg hover:bg-blue-600 transition-colors">
-        Register
-      </button>
+
+      <!-- Logo -->
+      <a
+        href=""
+        class="text-2xl md:text-3xl  lg:text-4xl
+        font-bold text-black no-underline"
+      >
+        PANSAP.
+      </a>
+
     </div>
+
+    <!-- RIGHT -->
+    <div class="flex items-center gap-3 lg:gap-5">
+
+      <!-- Search Desktop -->
+      <div
+        class="hidden lg:flex items-center
+        border rounded-full px-3 py-2
+        bg-white w-[220px]"
+      >
+
+        <i class="bi bi-search text-gray-500"></i>
+
+        <input
+          type="search"
+          placeholder="Search"
+          class="outline-none px-2 text-sm w-full bg-transparent"
+        />
+
+      </div>
+
+      <!-- Icons -->
+      <div class="flex items-center gap-3 md:gap-5 text-xl md:text-2xl">
+
+        <i class="bi bi-search lg:hidden cursor-pointer"></i>
+
+        <i class="bi bi-bell cursor-pointer hover:text-blue-600 transition"></i>
+
+        <i class="bi bi-heart cursor-pointer hover:text-blue-600 transition"></i>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <i class="bi bi-bag cursor-pointer hover:text-blue-600 transition"></i></button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>
+
+       
+
+        <i class="bi bi-person lg:hidden cursor-pointer hover:text-blue-600 transition"></i>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="hidden lg:flex items-center gap-3">
+
+        <button
+          class="border border-black
+          px-4 py-2 rounded-full
+          hover:bg-black hover:text-white transition"
+        >
+          Login
+        </button>
+
+        <button
+          class="bg-black text-white
+          px-4 py-2 rounded-full
+          hover:bg-blue-600 transition"
+        >
+          Register
+        </button>
+
+      </div>
+
+    </div>
+
   </header>
 </template>
+
 <script setup>
 const menu = [
   { link: "/home", name: "Home" },
