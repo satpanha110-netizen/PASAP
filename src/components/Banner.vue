@@ -31,13 +31,13 @@
         <button
           class="bg-black hover:bg-blue-600 transition-all duration-300 px-4 md:px-6 py-2 md:py-3 rounded-lg"
         >
-          Shop Now
+          Men
         </button>
 
         <button
           class="border border-white hover:bg-white hover:text-black transition-all duration-300 px-4 md:px-6 py-2 md:py-3 rounded-lg"
         >
-          Explore
+          Women
         </button>
 
       </div>

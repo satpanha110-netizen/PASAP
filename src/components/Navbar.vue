@@ -1,7 +1,7 @@
 <template>
   <header
     class="w-full flex items-center justify-between
-    px-4 md:px-8 lg:px-20
+    px-4 md:px-8 lg:px-8
     py-4 bg-gray-100 shadow-sm position-sticky z-50 top-1"
   >
 
@@ -78,13 +78,17 @@
       </div>
 
       <!-- Logo -->
-      <a
-        href=""
-        class="text-2xl md:text-3xl  lg:text-4xl
-        font-bold text-black no-underline"
-      >
-        PANSAP.
-      </a>
+     <div class="flex justify-center items-center h-[50px] overflow-hidden">
+  <img
+    src="../assets/logo.png"
+    alt="logo"
+    class="w-[80px] h-[80px] object-contain
+           scale-150
+           
+           transition duration-300"
+  >
+</div>
+      
 
     </div>
 
@@ -92,19 +96,27 @@
     <div class="flex items-center gap-3 lg:gap-5">
 
       <!-- Search Desktop -->
-      <div
-        class="hidden lg:flex items-center
-        border rounded-full px-3 py-2
-        bg-white w-[220px]"
-      >
-
-        <i class="bi bi-search text-gray-500"></i>
-
-        <input
+      <div class="hidden lg:flex items-center border rounded-full px-3 py-2 bg-white w-[220px]">
+        <button class="hidden lg:flex items-center
+             rounded-full px-3 
+             bg-white w-[220px]"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+           <i class="bi bi-search text-gray-500"></i>
+           <input
           type="search"
           placeholder="Search"
-          class="outline-none px-2 text-sm w-full bg-transparent"
-        />
+          class="outline-none px-2 text-sm w-full bg-transparent"/>
+        </button>
+
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasTopLabel">Offcanvas top</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+         <div class="offcanvas-body">
+           ...
+         </div>
+        </div>
+       
 
       </div>
 
