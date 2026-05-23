@@ -10,7 +10,7 @@
       <li
         v-for="item in menu"
         :key="item.name"
-        class=" list-none    transition"
+        class=" list-none  transition"
       >
         <a class="text-black  no-underline nav-link "  :href="item.link">
           {{ item.name }}
