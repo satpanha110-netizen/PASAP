@@ -1,18 +1,12 @@
 <template>
- 
   <Navbar />
-  <Banner />
-  <Card />
-    <router-view />
+  <router-view />
+  <MyFoot/>
 </template>
-
 <script setup>
+import MyFoot from "./components/MyFoot.vue";
 import Navbar from "./components/Navbar.vue";
-import Banner from "./components/Banner.vue";
-import Card from "./components/Card.vue";
-
 </script>
 
 <style>
-
 </style>

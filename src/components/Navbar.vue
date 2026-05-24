@@ -2,36 +2,116 @@
   <header
     class="w-full flex items-center justify-between
     px-4 md:px-8 lg:px-8
-    py-4 bg-gray-100 shadow-sm position-sticky z-50 top-1"
+    py-4 bg-white shadow-sm sticky top-0 z-50"
   >
 
     <!-- LEFT MENU -->
-    <ul class="​ hidden lg:flex    items-center gap-6 m-0 p-0">
+    <ul class="hidden lg:flex items-center gap-6 m-0 p-0">
+
       <li
-        v-for="item in menu"
-        :key="item.name"
-        class=" list-none  transition"
+        v-for="(item, index) in menu"
+        :key="item.id"
+        class="list-none position-static p-2"
+        @mouseenter="activeMenu = index"
+        @mouseleave="activeMenu = null"
       >
-        <a class="text-black  no-underline nav-link "  :href="item.link">
+
+        <router-link
+          class="text-black no-underline nav-link fw-semibold"
+          :to="{
+            path: '/menu',
+            query: {
+              gender: item.name
+            }
+          }"
+        >
           {{ item.name }}
-        </a>
+        </router-link>
+
+        <!-- DROPDOWN -->
+        <div
+          v-if="activeMenu === index && item.dropdown"
+          class="mega-menu position-absolute start-0 w-100 bg-white shadow-lg p-5"
+        >
+
+          <div class="container-fluid">
+
+            <div class="row">
+
+              <!-- COLUMN -->
+              <div
+                v-for="(section, i) in item.dropdown"
+                :key="i"
+                class="col-lg-2"
+              >
+
+                <h5
+                  class="fw-bold mb-4"
+                  :class="section.title === 'SALE' ? 'text-danger' : ''"
+                >
+                  {{ section.title }}
+                </h5>
+
+                <ul class="list-unstyled">
+
+                  <li
+                    v-for="(sub, j) in section.item"
+                    :key="j"
+                    class="mb-2"
+                  >
+
+                    <router-link
+                      class="list-none text-decoration-none"
+                      :to="{
+                        path: '/menu',
+                        query: {
+                          gender: item.name,
+                          section: section.title,
+                          category: sub
+                        }
+                      }"
+                    >
+
+                      <span
+                        class="text-dark menu-item"
+                        :class="section.title === 'SALE' ? 'text-danger' : ''"
+                      >
+                        {{ sub }}
+                      </span>
+
+                    </router-link>
+
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </li>
+
     </ul>
 
-    <!-- LOGO + MOBILE MENU -->
+    <!-- LOGO -->
     <div class="flex items-center gap-2">
 
-      <!-- Mobile Button -->
+      <!-- MOBILE BUTTON -->
       <button
-        class="lg:hidden block"
+        class="lg:hidden block border-0 bg-transparent"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasScrolling"
       >
+
         <i class="bi bi-list text-2xl"></i>
       </button>
 
-      <!-- Offcanvas -->
+      <!-- MOBILE MENU -->
       <div
         class="offcanvas offcanvas-start"
         data-bs-scroll="true"
@@ -60,15 +140,22 @@
 
             <li
               v-for="item in menu"
-              :key="item.name"
+              :key="item.id"
               class="list-none"
             >
-              <a
-                class="text-black no-underline text-lg nav-link transition"
-                :href="item.link"
+
+              <router-link
+                class="text-black no-underline text-lg nav-link"
+                :to="{
+                  path: '/menu',
+                  query: {
+                    gender: item.name,
+                  }
+                }"
               >
-                {{ item.name }}
-              </a>
+                {{ item.name }}lll
+              </router-link>
+
             </li>
 
           </ul>
@@ -77,50 +164,40 @@
 
       </div>
 
-      <!-- Logo -->
-     <div class="flex justify-center items-center h-[50px] overflow-hidden">
-  <img
-    src="../assets/logo.png"
-    alt="logo"
-    class="w-[80px] h-[80px] object-contain
-           scale-150
-           
-           transition duration-300"
-  >
-</div>
-      
+      <!-- LOGO -->
+      <div class="flex justify-center items-center h-[50px] overflow-hidden">
+        <router-link to="/">
+
+          <img
+            src="../assets/logo.png"
+            alt="logo"
+            class="w-[80px] h-[80px] object-contain scale-150"
+          >
+        </router-link>
+
+      </div>
 
     </div>
 
     <!-- RIGHT -->
     <div class="flex items-center gap-3 lg:gap-5">
 
-      <!-- Search Desktop -->
-      <div class="hidden lg:flex items-center border rounded-full px-3 py-2 bg-white w-[220px]">
-        <button class="hidden lg:flex items-center
-             rounded-full px-3 
-             bg-white w-[220px]"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-           <i class="bi bi-search text-gray-500"></i>
-           <input
+      <!-- SEARCH -->
+      <div
+        class="hidden lg:flex items-center border rounded-full px-3 py-2 bg-white w-[220px]"
+      >
+
+        <i class="bi bi-search text-gray-500"></i>
+
+        <input
           type="search"
           placeholder="Search"
-          class="outline-none px-2 text-sm w-full bg-transparent"/>
-        </button>
-
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasTopLabel">Offcanvas top</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-         <div class="offcanvas-body">
-           ...
-         </div>
-        </div>
-       
+          class="outline-none px-2 text-sm w-full bg-transparent border-0"
+        >
 
       </div>
 
-      <!-- Icons -->
+      <!-- ICONS -->
       <div class="flex items-center gap-3 md:gap-5 text-xl md:text-2xl">
 
         <i class="bi bi-search lg:hidden cursor-pointer"></i>
@@ -128,25 +205,48 @@
         <i class="bi bi-bell cursor-pointer hover:text-blue-600 transition"></i>
 
         <i class="bi bi-heart cursor-pointer hover:text-blue-600 transition"></i>
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <i class="bi bi-bag cursor-pointer hover:text-blue-600 transition"></i></button>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    ...
-  </div>
-</div>
+        <button
+          class="border-0 bg-transparent p-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+        >
+          <i class="bi bi-bag cursor-pointer hover:text-blue-600 transition"></i>
+        </button>
 
-       
+        <!-- CART -->
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasRight"
+        >
+
+          <div class="offcanvas-header">
+
+            <h5 class="offcanvas-title">
+              Shopping Cart
+            </h5>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+            ></button>
+
+          </div>
+
+          <div class="offcanvas-body">
+            Your cart is empty.
+          </div>
+
+        </div>
 
         <i class="bi bi-person lg:hidden cursor-pointer hover:text-blue-600 transition"></i>
 
       </div>
 
-      <!-- Buttons -->
+      <!-- BUTTONS -->
       <div class="hidden lg:flex items-center gap-3">
 
         <button
@@ -160,7 +260,7 @@
         <button
           class="bg-black text-white
           px-4 py-2 rounded-full
-          hover:bg-blue-600 transition"
+          hover:bg-blue-600 transition border-0"
         >
           Register
         </button>
@@ -173,10 +273,36 @@
 </template>
 
 <script setup>
-const menu = [
-  { link: "/home", name: "Home" },
-  { link: "/about", name: "About" },
-  { link: "/service", name: "Service" },
-  { link: "/contact", name: "Contact" }
-]
+import { ref } from "vue"
+import { menu } from "../data/menu_drown"
+
+const activeMenu = ref(null)
+
 </script>
+
+<style scoped>
+.nav-link {
+  font-size: 17px;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #2563eb;
+}
+
+.mega-menu {
+  top: 65px;
+  left: 0;
+  z-index: 999;
+  min-height: 350px;
+}
+
+.menu-item {
+  transition: 0.3s;
+}
+
+.menu-item:hover {
+  color: red !important;
+  padding-left: 5px;
+}
+</style>
