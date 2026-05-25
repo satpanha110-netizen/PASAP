@@ -504,15 +504,16 @@ export const products = [
   {
     id: 31,
     category_for : "Men",
-    item : "Clothing",
-    type : "T-Shirts",
+    item : "Accessories",
+    type : "Backpack",
     isNewIn:true,
     image :[
-      "https://zandokh.com/image/catalog/products/2026-05/2112603877/PTAK0054.jpg",
-      "https://zandokh.com/image/catalog/products/2026-05/2112603877/PTAK0052.jpg",
-      "https://zandokh.com/image/catalog/products/2026-05/2112603877/PTAK0056.jpg",
-      "https://zandokh.com/image/catalog/products/2026-05/2112603877/PTAK0063.jpg",
-      "https://zandokh.com/image/catalog/products/2026-05/2112603877/PTAK0051.jpg"
+      "https://zandokh.com/image/catalog/products/2026-04/5582507133/H7_01206.jpg",
+      "https://zandokh.com/image/catalog/products/2026-04/5582507133/H7_01207.jpg",
+      "https://zandokh.com/image/catalog/products/2026-04/5582507133/H7_01209.jpg",
+      "https://zandokh.com/image/catalog/products/2026-04/5582507133/H7_01210.jpg",
+      "https://zandokh.com/image/catalog/products/2026-04/5582507133/H7_01211.jpg",
+      "https://zandokh.com/image/catalog/products/2026-04/5582507133/H7_01212.jpg"
     ],
     price:18,
     discount:10,
@@ -599,6 +600,22 @@ export const products = [
       "https://zandokh.com/image/catalog/products/2026-02/4122508353/10S26SAN001%20-%20INDIGO%20(2).jpg",
       "https://zandokh.com/image/catalog/products/2026-02/4122508353/10S26SAN001%20-%20INDIGO%20(1).jpg",
       "https://zandokh.com/image/catalog/products/2026-02/4122508353/10S26SAN001%20-%20INDIGO%20(3).jpg"
+    ],
+    price:8,
+    discount:0,
+    discription :"Oversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-ShirtOversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-Shirt Yellow Casual Short Sleeve Knitted Fabric Animal,Graphic,Letter,Slogan Non-Stretch Women Clothing, size features are:Bust: ,Length: ,Sleeve"
+  },
+  {
+    id: 35,
+    category_for : "Men",
+    item : "Accessories",
+    type : "Bags",
+    isNewIn:false,
+    image :[
+      "https://zandokh.com/image/catalog/products/2026-03/5582507137/PTAK6077.jpg",
+      "https://zandokh.com/image/catalog/products/2026-03/5582507137/PTAK6078.jpg",
+      "https://zandokh.com/image/catalog/products/2026-03/5582507137/PTAK6079.jpg",
+      "https://zandokh.com/image/catalog/products/2026-03/5582507137/PTAK6080.jpg"
     ],
     price:8,
     discount:0,

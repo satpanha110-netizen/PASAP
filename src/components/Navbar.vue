@@ -115,7 +115,7 @@
 
       <!-- MOBILE MENU -->
       <div
-        class="offcanvas offcanvas-start"
+        class="offcanvas offcanvas-start w-75"
         data-bs-scroll="true"
         data-bs-backdrop="false"
         tabindex="-1"
@@ -127,7 +127,22 @@
         <div class="offcanvas-header">
 
           <h5 class="offcanvas-title fw-bold">
-            PANSAP.
+              <div
+        class="flex justify-center items-center
+        h-[50px] overflow-hidden"
+      >
+
+        <router-link to="/">
+
+          <img
+            src="../assets/logo.png"
+            alt="logo"
+            class="w-[80px] h-[80px] object-contain scale-150"
+          >
+
+        </router-link>
+
+      </div>
           </h5>
 
           <button
