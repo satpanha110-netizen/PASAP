@@ -334,7 +334,7 @@ export const productWoman = [
     ],
     price:6.57,
     discount: 10,
-    
+      
   },
    {
     id: 901,

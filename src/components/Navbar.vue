@@ -120,8 +120,10 @@
         data-bs-backdrop="false"
         tabindex="-1"
         id="offcanvasScrolling"
+        ref="offcanvasRef"
       >
 
+        <!-- HEADER -->
         <div class="offcanvas-header">
 
           <h5 class="offcanvas-title fw-bold">
@@ -136,6 +138,7 @@
 
         </div>
 
+        <!-- BODY -->
         <div class="offcanvas-body">
 
           <ul class="flex flex-col gap-3 p-0 m-0">
@@ -191,9 +194,11 @@
 
                     <h6
                       class="fw-bold mb-3"
-                      :class="section.title === 'SALE'
-                        ? 'text-danger'
-                        : 'text-dark'"
+                      :class="
+                        section.title === 'SALE'
+                          ? 'text-danger'
+                          : 'text-dark'
+                      "
                     >
                       {{ section.title }}
                     </h6>
@@ -208,7 +213,6 @@
 
                         <router-link
                           class="text-decoration-none text-secondary mobile-link"
-                           data-bs-dismiss="offcanvas"
                           :to="{
                             path: '/menu',
                             query: {
@@ -217,6 +221,7 @@
                               category: sub
                             }
                           }"
+                          @click="goMenu"
                         >
                           {{ sub }}
                         </router-link>
@@ -373,8 +378,21 @@
 <script setup>
 import { ref } from "vue"
 import { menu } from "../data/menu_drown"
+import { Offcanvas } from "bootstrap"
 
 const activeMenu = ref(null)
+const offcanvasRef = ref(null)
+
+const goMenu = () => {
+  const offcanvas =
+    Offcanvas.getOrCreateInstance(
+      offcanvasRef.value
+    )
+
+  if (offcanvas) {
+    offcanvas.hide()
+  }
+}
 </script>
 
 <style scoped>
