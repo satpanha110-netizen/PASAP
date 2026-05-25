@@ -53,10 +53,10 @@ export const products = [
     isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0051.jpg",
-      "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0051.jpg",
-      "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0051.jpg",
-    "https://zandokh.com/image/cache/catalog/products/2026-05/4122601572/10S26SHS014_Chocolate%20(1)-cr-450x672.jpg"
-
+      "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0058.jpg",
+       "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0050.jpg",
+       "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0049.jpg",
+        "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0048.jpg"
     ],
     price: 20,
     discount: 10,
@@ -69,8 +69,8 @@ export const products = [
     type: "T-Shirts",
     isNewIn: true,
     image: [
-      "https://zandokh.com/image/cache/catalog/products/2026-05/4122601572/10S26SHS014_Chocolate%20(1)-cr-450x672.jpg",
-            "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0051.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/4122601555/10S26TSS020_Navy%20(1).jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/4122601555/10S26TSS020_Navy%20(2).jpg"
 
     ],
     price: 12,
@@ -84,7 +84,11 @@ export const products = [
     type: "Stripe Long Sleeves Shirt",
     isNewIn: true,
     image: [
-      "https://zandokh.com/image/cache/catalog/products/2026-05/11226021722/STU_6863-cr-450x672.jpg"
+      "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0085.jpg",
+      "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0088.jpg",
+       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0082.jpg",
+       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0081.jpg",
+       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0080.jpg"
     ],
     price: 22,
     discount: 30,
@@ -96,7 +100,12 @@ export const products = [
     type: "Maxi Dress",
     isNewIn: true,
     image: [
-      "https://zandokh.com/image/cache/catalog/products/2026-05/3222602699/AV8A9954-cr-450x672.jpg"
+      "https://zandokh.com/image/cache/catalog/products/2026-05/3222602699/AV8A9954-cr-450x672.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602699/AV8A9959.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602699/AV8A9953.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602699/AV8A9950.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602699/AV8A9949.jpg",
+
     ],
     price: 22,
     discount:40,
@@ -107,7 +116,11 @@ export const products = [
     category_for: "Men",
     type: "Loose Fitted Shirt",
     isNewIn: false,
-    image: ["https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0045.jpg"
+    image: ["https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0045.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0036.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0043.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0047.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0048.jpg"
     ],
     price: 22,
     discount: 20,
@@ -119,7 +132,11 @@ export const products = [
     type: "Regular Polo Shirt",
     isNewIn: false,
     image: [
-      "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0040.jpg"
+      "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0040.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0048.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0035.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0033.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0032.jpg"
     ],
     price: 22,
     discount: 10,
@@ -131,7 +148,11 @@ export const products = [
     type: "Knitted Polo Shirt",
     isNewIn: false,
     image: [
-      "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9112.jpg"
+      "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9112.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9113.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9106.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9105.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9104.jpg"
     ],
     price: 22,
     discount: 10,
@@ -143,7 +164,11 @@ export const products = [
     type: "Stripe Polo Shirt With Zip",
     isNewIn: false,
     image: [
-      "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7058.jpg"
+      "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7058.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7064.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7055.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7054.jpg",
+       "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7053.jpg"
     ],
     price: 22,
     discount: 30,
@@ -162,12 +187,16 @@ export const products = [
   
   },
     {
-    id: 1000,
+    id: 10001,
     category_for: "Women",
-    type: "Knitted Polo Shirt",
+    type: "Floral Maxi Dress",
     isNewIn: false,
     image: [
-      "https://zandokh.com/image/catalog/products/2026-02/22225121900/PTAK6251.jpg"
+      "https://zandokh.com/image/catalog/products/2026-05/12226022682/STU_5860.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/12226022682/STU_5863.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/12226022682/STU_5865.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/12226022682/STU_5859.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/12226022682/STU_5858.jpg",
     ],
     price: 22,
     discount:10,
@@ -179,7 +208,11 @@ export const products = [
     type: "Relaxed Fitted Shirt",
     isNewIn: false,
     image: [
-      "https://zandokh.com/image/catalog/products/2026-05/4122605537/10S26SHS027%20-%20Rainy%20Day%20(4).jpg"
+      "https://zandokh.com/image/catalog/products/2026-05/4122605537/10S26SHS027%20-%20Rainy%20Day%20(4).jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/4122512471/10S26POL002P%20-%20Crystal%20Gray%20(2).jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/4122512471/10S26POL002P%20-%20Crystal%20Gray%20(3).jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/4122512471/10S26POL002P%20-%20Crystal%20Gray%20(4).jpg",
+
     ],
     price: 22,
     discount: 10,
@@ -188,10 +221,17 @@ export const products = [
     {
     id: 1200,
     category_for: "Women",
-    type: "Half-Zip Striped Knit Polo Sweater",
+    type: "Graphic Printed T-Shir",
     isNewIn: false,
     image: [
-      "https://zandokh.com/image/catalog/products/2026-03/6222602022/507576_4.jpg"
+      "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4847.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4847.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4851.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4844.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4843.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4842.jpg",
+
+
     ],
     price: 22,
     discount: 20,
@@ -316,7 +356,7 @@ export const productWoman = [
 ]
 export const productshop =[
        {
-    id: 1,
+    id: 10000,
     
     type: " Running Sneakers",
     isNewIn: true,
@@ -329,7 +369,7 @@ export const productshop =[
   },
 
   {
-    id: 2,
+    id: 20000,
    
     type: "Lifestyle Sneakers",
     isNewIn: true,
@@ -342,7 +382,7 @@ export const productshop =[
   },
 
   {
-    id: 3,
+    id: 30000,
     
     type: "Skateboarding Sneakers",
     isNewIn: true,
@@ -354,7 +394,7 @@ export const productshop =[
    
   },
     {
-    id: 4,
+    id: 40000,
    
     type: "Lifestyle Sneakers",
     isNewIn: true,
@@ -366,7 +406,7 @@ export const productshop =[
   
   },
     {
-    id: 5,
+    id: 50000,
   
     type: "Running Sneakers ",
     isNewIn: false,
@@ -377,7 +417,7 @@ export const productshop =[
   
   },
     {
-    id: 6,
+    id: 60000,
    
     type: "Athletic sneakers",
     isNewIn: false,
@@ -389,7 +429,7 @@ export const productshop =[
     
   },
    {
-    id: 7,
+    id: 70000,
    
     type: "Lifestyle Sneakers",
     isNewIn: false,
@@ -401,7 +441,7 @@ export const productshop =[
     
   },
    {
-    id: 8,
+    id: 80000,
    
     type: "Running Shoes",
     isNewIn: false,
@@ -413,7 +453,7 @@ export const productshop =[
     
   },
    {
-    id: 9,
+    id: 90000,
    
     type: " Basketball Sneakers",
     isNewIn: false,

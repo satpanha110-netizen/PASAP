@@ -154,8 +154,10 @@ export const products = [
     type : "Skirt",
     isNewIn:true,
     image :[
-      "https://zandokh.com/image/catalog/products/2026-05/22226022076/AV8A9993.jpg",
-      "https://zandokh.com/image/cache/catalog/products/2026-05/3222602699/AV8A9971-cr-450x672.jpg"
+      "https://zandokh.com/image/catalog/products/2026-05/3222511663/1.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222511663/2.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222511663/5.jpg",
+      "https://zandokh.com/image/catalog/products/2026-05/3222511663/4.jpg"
     ],
     price:32,
     discount:10,

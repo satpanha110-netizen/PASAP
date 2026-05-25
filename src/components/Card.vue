@@ -357,12 +357,14 @@
           class="relative h-[420px]
                  overflow-hidden bg-gray-100"
         >
-       
-          <img
+      <router-link :to="`/detail/${item.id}`">
+         <img
             :src="item.image[0]"
             :alt="item.type"
             class="w-full h-full object-cover
                    group-hover:scale-105 duration-500"/>
+      </router-link>
+         
        
           <!-- NEW Badge -->
           <div v-if="item.isNewIn"

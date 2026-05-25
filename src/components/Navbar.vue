@@ -28,7 +28,7 @@
           {{ item.name }}
         </router-link>
 
-        <!-- DROPDOWN -->
+        <!-- MEGA MENU -->
         <div
           v-if="activeMenu === index && item.dropdown"
           class="mega-menu position-absolute start-0 w-100 bg-white shadow-lg p-5"
@@ -38,7 +38,6 @@
 
             <div class="row">
 
-              <!-- COLUMN -->
               <div
                 v-for="(section, i) in item.dropdown"
                 :key="i"
@@ -47,7 +46,9 @@
 
                 <h5
                   class="fw-bold mb-4"
-                  :class="section.title === 'SALE' ? 'text-danger' : ''"
+                  :class="section.title === 'SALE'
+                    ? 'text-danger'
+                    : ''"
                 >
                   {{ section.title }}
                 </h5>
@@ -74,7 +75,9 @@
 
                       <span
                         class="text-dark menu-item"
-                        :class="section.title === 'SALE' ? 'text-danger' : ''"
+                        :class="section.title === 'SALE'
+                          ? 'text-danger'
+                          : ''"
                       >
                         {{ sub }}
                       </span>
@@ -97,7 +100,7 @@
 
     </ul>
 
-    <!-- LOGO -->
+    <!-- LOGO + MOBILE -->
     <div class="flex items-center gap-2">
 
       <!-- MOBILE BUTTON -->
@@ -107,7 +110,6 @@
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasScrolling"
       >
-
         <i class="bi bi-list text-2xl"></i>
       </button>
 
@@ -136,25 +138,98 @@
 
         <div class="offcanvas-body">
 
-          <ul class="flex flex-col gap-4 p-0">
+          <ul class="flex flex-col gap-3 p-0 m-0">
 
             <li
-              v-for="item in menu"
-              :key="item.id"
-              class="list-none"
+              v-for="men in menu"
+              :key="men.id"
+              class="list-none border rounded-4 overflow-hidden bg-white shadow-sm"
             >
 
-              <router-link
-                class="text-black no-underline text-lg nav-link"
-                :to="{
-                  path: '/menu',
-                  query: {
-                    gender: item.name,
-                  }
-                }"
-              >
-                {{ item.name }}lll
-              </router-link>
+              <details class="group">
+
+                <!-- HEADER -->
+                <summary
+                  class="list-none px-4 py-3 d-flex align-items-center justify-content-between cursor-pointer"
+                >
+
+                  <div class="d-flex align-items-center gap-3">
+
+                    <div
+                      class="rounded-circle bg-black text-white d-flex align-items-center justify-content-center fw-bold"
+                      style="width:40px; height:40px;"
+                    >
+                      {{ men.name.charAt(0) }}
+                    </div>
+
+                    <div>
+
+                      <h6 class="m-0 fw-bold">
+                        {{ men.name }}
+                      </h6>
+
+                      <small class="text-secondary">
+                        {{ men.dropdown.length }} collections
+                      </small>
+
+                    </div>
+
+                  </div>
+
+                  <i class="bi bi-chevron-down"></i>
+
+                </summary>
+
+                <!-- CONTENT -->
+                <div class="px-4 pb-4">
+
+                  <div
+                    v-for="(section, index) in men.dropdown"
+                    :key="index"
+                    class="mb-4"
+                  >
+
+                    <h6
+                      class="fw-bold mb-3"
+                      :class="section.title === 'SALE'
+                        ? 'text-danger'
+                        : 'text-dark'"
+                    >
+                      {{ section.title }}
+                    </h6>
+
+                    <ul class="list-unstyled m-0">
+
+                      <li
+                        v-for="(sub, i) in section.item"
+                        :key="i"
+                        class="mb-2"
+                      >
+
+                        <router-link
+                          class="text-decoration-none text-secondary mobile-link"
+                           data-bs-dismiss="offcanvas"
+                          :to="{
+                            path: '/menu',
+                            query: {
+                              gender: men.name,
+                              section: section.title,
+                              category: sub
+                            }
+                          }"
+                        >
+                          {{ sub }}
+                        </router-link>
+
+                      </li>
+
+                    </ul>
+
+                  </div>
+
+                </div>
+
+              </details>
 
             </li>
 
@@ -165,7 +240,11 @@
       </div>
 
       <!-- LOGO -->
-      <div class="flex justify-center items-center h-[50px] overflow-hidden">
+      <div
+        class="flex justify-center items-center
+        h-[50px] overflow-hidden"
+      >
+
         <router-link to="/">
 
           <img
@@ -173,6 +252,7 @@
             alt="logo"
             class="w-[80px] h-[80px] object-contain scale-150"
           >
+
         </router-link>
 
       </div>
@@ -184,7 +264,9 @@
 
       <!-- SEARCH -->
       <div
-        class="hidden lg:flex items-center border rounded-full px-3 py-2 bg-white w-[220px]"
+        class="hidden lg:flex items-center
+        border rounded-full px-3 py-2
+        bg-white w-[220px]"
       >
 
         <i class="bi bi-search text-gray-500"></i>
@@ -192,7 +274,8 @@
         <input
           type="search"
           placeholder="Search"
-          class="outline-none px-2 text-sm w-full bg-transparent border-0"
+          class="outline-none px-2 text-sm
+          w-full bg-transparent border-0"
         >
 
       </div>
@@ -202,17 +285,29 @@
 
         <i class="bi bi-search lg:hidden cursor-pointer"></i>
 
-        <i class="bi bi-bell cursor-pointer hover:text-blue-600 transition"></i>
+        <i
+          class="bi bi-bell cursor-pointer
+          hover:text-blue-600 transition"
+        ></i>
 
-        <i class="bi bi-heart cursor-pointer hover:text-blue-600 transition"></i>
+        <i
+          class="bi bi-heart cursor-pointer
+          hover:text-blue-600 transition"
+        ></i>
 
+        <!-- CART BUTTON -->
         <button
           class="border-0 bg-transparent p-0"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasRight"
         >
-          <i class="bi bi-bag cursor-pointer hover:text-blue-600 transition"></i>
+
+          <i
+            class="bi bi-bag cursor-pointer
+            hover:text-blue-600 transition"
+          ></i>
+
         </button>
 
         <!-- CART -->
@@ -242,11 +337,14 @@
 
         </div>
 
-        <i class="bi bi-person lg:hidden cursor-pointer hover:text-blue-600 transition"></i>
+        <i
+          class="bi bi-person lg:hidden cursor-pointer
+          hover:text-blue-600 transition"
+        ></i>
 
       </div>
 
-      <!-- BUTTONS -->
+      <!-- BUTTON -->
       <div class="hidden lg:flex items-center gap-3">
 
         <button
@@ -277,7 +375,6 @@ import { ref } from "vue"
 import { menu } from "../data/menu_drown"
 
 const activeMenu = ref(null)
-
 </script>
 
 <style scoped>
@@ -304,5 +401,26 @@ const activeMenu = ref(null)
 .menu-item:hover {
   color: red !important;
   padding-left: 5px;
+}
+
+.mobile-link {
+  transition: 0.3s;
+}
+
+.mobile-link:hover {
+  color: #2563eb !important;
+  padding-left: 5px;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] .bi-chevron-down {
+  transform: rotate(180deg);
+}
+
+.bi-chevron-down {
+  transition: 0.3s;
 }
 </style>

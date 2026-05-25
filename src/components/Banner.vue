@@ -26,21 +26,41 @@
       </p>
 
       <!-- Buttons -->
-      <div class="flex gap-3">
+    <div class="d-flex align-items-center gap-3">
 
-        <button
-          class="bg-black hover:bg-blue-600 transition-all duration-300 px-4 md:px-6 py-2 md:py-3 rounded-lg"
-        >
-          Men
-        </button>
+  <!-- MEN -->
+  <router-link
+    :to="{
+      path: '/menu',
+      query: {
+        gender: 'Men',
+        section: 'New In',
+        category: 'All'
+      }
+    }"
+    class="btn btn-dark gender-btn"
+  >
+    Men
+   
+  </router-link>
 
-        <button
-          class="border border-white hover:bg-white hover:text-black transition-all duration-300 px-4 md:px-6 py-2 md:py-3 rounded-lg"
-        >
-          Women
-        </button>
+  <!-- WOMEN -->
+  <router-link
+    :to="{
+      path: '/menu',
+      query: {
+        gender: 'Women',
+        section: 'New In',
+        category: 'All'
+      }
+    }"
+    class="btn btn-dark gender-btn women-btn"
+  >
+    Women
+   
+  </router-link>
 
-      </div>
+</div>
     </div>
 
   </section>
@@ -105,6 +125,10 @@
   </div>
 
 </template>
+<script>
+import { useRouter } from 'vue-router';
+const route = useRouter();
+</script>
 
 <style scoped>
 

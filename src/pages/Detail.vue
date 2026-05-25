@@ -27,11 +27,11 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { products as productData ,productWoman } from '../data/products'
+import { products as productData ,productWoman, productshop } from '../data/products'
 import { products as menuData } from '../data/menu_data'
 
 // combine both arrays
-const allProducts = [...productData, ...menuData, ...productWoman]
+const allProducts = [...productData, ...menuData, ...productWoman,...productshop]
 
 const route = useRoute()
 

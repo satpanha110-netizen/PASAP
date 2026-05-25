@@ -1,59 +1,150 @@
 <template>
-  <div class="container-fluid py-3 px-lg-5 px-3">
-    <!-- TITLE -->
-    <h1 class="title mb-4">
-      {{ route.query.gender }}
-      -
-      {{ route.query.section }}
-      -
-      {{ route.query.category }}
-      ({{ qty }})
-    </h1>
+  <div class="container-fluid py-4 px-lg-5 px-3">
+
+    <!-- HEADER -->
+    <div class="header-box mb-5">
+
+      <div>
+        <p class="mini-title">DISCOVER COLLECTION</p>
+
+        <h1 class="title">
+          {{ route.query.gender }}
+          <span>/</span>
+          {{ route.query.section }}
+          <span>/</span>
+          {{ route.query.category }}
+        </h1>
+      </div>
+
+      <div class="qty-box">
+        <h3>{{ qty }}</h3>
+        <p>Products Available</p>
+      </div>
+
+    </div>
+
     <!-- PRODUCTS -->
-    <div class="row g-2 g-md-3 g-lg-4">
+    <div class="row g-4">
+
       <div
         class="col-6 col-md-4 col-lg-3"
         v-for="product in filteredProducts"
-        :key="product.id">
-        <div class="card border-0" style="z-index: 0;">
-          <img class="main-image" :src="product.image[0]" alt="">
-          <router-link class="text-decoration-none" :to="`/detail/${product.id}`">
-            <img
-              v-if="product.image[1]"
-              class="hover-image"
-              :src="product.image[1]"
-              alt=""
-            >
-          </router-link>
-          <!-- NEW -->
-          <span class="badge-new" v-if="product.isNewIn">
-            NEW
-          </span>
-          <!-- DISCOUNT -->
-          <span class="badge-discount" v-if="product.discount != 0">
-            -{{ product.discount }}%
-          </span>
-        </div>
+        :key="product.id"
+      >
+
+        <div class="product-card">
+
           <!-- IMAGE -->
-          <div class="image-box">
-          <!-- CONTENT -->
-          <div class="content d-flex flex-column justify-content-between flex-grow-1">
-            <div>
-              <h3>{{ product.category_for }} {{ product.type }}</h3>
-              <!-- <p>{{ product.category_for. product.type }}</p> -->
-            </div>
-            <div class="bottom">
-              <div class="d-flex">
-                <h4 style="text-decoration: line-through;" v-if="product.discount!=0">US ${{ product.price }}</h4>
-                <h4 v-if="product.discount!=0">US ${{ (product.price-((product.price*product.discount)/100)).toFixed(1) }}</h4>
-                <h4 v-else>US ${{ product.price }}</h4>
-              </div>
-              <button @click="handleCount">
-                Add {{ product.id }}
+          <div class="image-wrapper">
+
+            <router-link
+              class="text-decoration-none"
+              :to="`/detail/${product.id}`"
+            >
+
+              <!-- MAIN IMAGE -->
+              <img
+                class="main-image"
+                :src="product.image[0]"
+                alt=""
+              >
+
+              <!-- HOVER IMAGE -->
+              <img
+                v-if="product.image[1]"
+                class="hover-image"
+                :src="product.image[1]"
+                alt=""
+              >
+
+            </router-link>
+
+            <!-- OVERLAY -->
+            <div class="overlay">
+
+              <button class="icon-btn">
+                <i class="bi bi-heart"></i>
               </button>
+
+              <button class="icon-btn">
+                <i class="bi bi-eye"></i>
+              </button>
+
             </div>
+
+            <!-- BADGES -->
+            <div class="badges">
+
+              <span
+                class="badge-new"
+                v-if="product.isNewIn"
+              >
+                NEW
+              </span>
+
+              <span
+                class="badge-discount"
+                v-if="product.discount != 0"
+              >
+                -{{ product.discount }}%
+              </span>
+
+            </div>
+
           </div>
+
+          <!-- CONTENT -->
+          <div class="content">
+
+            <!-- CATEGORY -->
+            <p class="category">
+              {{ product.category_for }}
+            </p>
+
+            <!-- NAME -->
+            <h3 class="product-name">
+              {{ product.type }}
+            </h3>
+
+            <!-- PRICE -->
+            <div class="price-row">
+
+              <div class="price-box">
+
+                <span
+                  class="old-price"
+                  v-if="product.discount != 0"
+                >
+                  ${{ product.price }}
+                </span>
+
+                <span class="new-price">
+                  $
+                  {{
+                    product.discount != 0
+                      ? (
+                          product.price -
+                          ((product.price * product.discount) / 100)
+                        ).toFixed(1)
+                      : product.price
+                  }}
+                </span>
+
+              </div>
+
+              <button
+                class="cart-btn"
+                @click="handleCount"
+              >
+                <i class="bi bi-bag-plus"></i>
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
 
     </div>
@@ -65,237 +156,398 @@
     >
       No Product Found
     </div>
+
   </div>
 </template>
+
 <script setup>
-import { computed } from "vue"
+import { computed, inject } from "vue"
 import { useRoute } from "vue-router"
 import { products } from "../data/menu_data"
-import { inject } from "vue"
-const route = useRoute();
+
+const route = useRoute()
 
 const filteredProducts = computed(() => {
-  const category_for = route.query.gender?.toLowerCase();
-  const item = route.query.section?.toLowerCase();
-  const type = route.query.category?.toLowerCase();
-  let result = [];
+
+  const category_for = route.query.gender?.toLowerCase()
+  const item = route.query.section?.toLowerCase()
+  const type = route.query.category?.toLowerCase()
+
+  let result = []
+
   for (let i = 0; i < products.length; i++) {
-    const product = products[i];
+
+    const product = products[i]
+
     // CATEGORY
-    //comare category_for in url with product category_for(mean category) 
-    // if choose on Men and products have Men (1 or more) it will continue to check other condition
-    //  but products don't have Men it will skip this product and continue to next product
-    // {    
-    //   id: 1,
-    //   category_for: "Men",
-    // }
-    // it will compare
-    // it will compare match and continue if no product have (Men,Women,Kids) it will skip all product and return empty array
     if (product.category_for.toLowerCase() !== category_for) {
-      continue;
+      continue
     }
-    // NEW IN Category
-    // if choose new in item it will check if product is new in or not if not it will skip this product and continue to next product
-    if (item === "new in") { 
-      if (!product.isNewIn) { // if our product is new in it will continue
-        continue;
+
+    // NEW IN
+    if (item === "new in") {
+
+      if (!product.isNewIn) {
+        continue
       }
-      if (type === "all") { // if choose all in new in it will push all new in product to result array
-        result.push(product);
-        continue;
+
+      if (type === "all") {
+        result.push(product)
+        continue
       }
-      // if choose else like (clothing,shoes,accessories) it will compare with product item if match it will push to result array
-      // if we choose clothing it will compare with product item if product item is clothing it will push to result array 
-      // but if product item is shoes or accessories it will skip this product and continue to next product
-      if (product.item.toLowerCase() === type) { 
-        result.push(product);
+
+      if (product.item.toLowerCase() === type) {
+        result.push(product)
       }
-      continue;
+
+      continue
     }
-    // NORMAL CATEGORY//
-    // if choose normal category it will compare item in url with product item 
+
+    // NORMAL CATEGORY
     if (product.item.toLowerCase() !== item) {
-      continue;
+      continue
     }
-    // ALL TYPES
-    // if choose all in type it will push all product that match category and item to result array
+
+    // ALL TYPE
     if (type === "all") {
-      result.push(product);
-      continue;
+      result.push(product)
+      continue
     }
+
     // TYPE MATCH
-    // if choose else in type it will compare with product type if match it will push to result array
     if (product.type.toLowerCase() === type) {
-      result.push(product);
+      result.push(product)
     }
+
   }
-  return result;
-});
-const qty = computed(() => filteredProducts.value.length);
-// computed is used to calculate the length of filtered products and update qty whenever filteredProducts change
-const handleCount = inject("handleCount");
+
+  return result
+})
+
+const qty = computed(() => filteredProducts.value.length)
+
+const handleCount = inject("handleCount")
 </script>
+
 <style scoped>
-/* TITLE */
+
+/* PAGE */
+.container-fluid{
+  background:
+  linear-gradient(to bottom,#f7f8fc,#eef2f7);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header-box{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.mini-title{
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
 .title{
-  font-size:34px;
-  font-weight:bold;
-  color:#111;
+  font-size: 42px;
+  font-weight: 900;
+  color: #111;
+  margin: 0;
+  text-transform: capitalize;
+  line-height: 1.2;
 }
+
+.title span{
+  color: #d0d0d0;
+  margin: 0 8px;
+}
+
+.qty-box{
+  background: white;
+  padding: 18px 26px;
+  border-radius: 22px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.qty-box h3{
+  margin: 0;
+  font-size: 30px;
+  font-weight: 900;
+  color: #111;
+}
+
+.qty-box p{
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+}
+
 /* CARD */
-.card{
-  height: 485px;
-  background:white;
-  border-radius:20px;
-  overflow:hidden;
-  transition:0.4s;
-  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+.product-card{
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  background: white;
+  transition: 0.5s;
+  box-shadow:
+  0 10px 35px rgba(0,0,0,0.06);
 }
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 15px 30px rgba(0,0,0,0.12);
-  cursor: pointer;
+
+.product-card:hover{
+  transform: translateY(-12px);
+  box-shadow:
+  0 22px 50px rgba(0,0,0,0.12);
 }
+
 /* IMAGE */
-.image-box{
-  width:100%;
-  height:100%;
-  position:relative;
-  overflow:hidden;
+.image-wrapper{
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  background: #f3f4f8;
 }
-/* RESPONSIVE IMAGE HEIGHT */
-@media(max-width:992px){
-  .image-box{
-    height:280px;
-  }
-}
-@media(max-width:576px){
-  .card{
-    /* width: 40%; */
-    height: auto;
-  }
-  /* .image-box{
-    height:250px;
-  } */
-}
+
 .main-image,
 .hover-image{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  position:absolute;
-  top:0;
-  left:0;
-  transition:0.5s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  transition: 0.6s;
 }
-/* HOVER IMAGE */
+
+/* HOVER */
 .hover-image{
-  opacity:0;
+  opacity: 0;
+  transform: scale(1.1);
 }
-.card:hover .hover-image{
-  opacity:1;
+
+.product-card:hover .hover-image{
+  opacity: 1;
+  transform: scale(1);
 }
-.card:hover .main-image{
-  opacity:0;
-  transform:scale(1.05);
+
+.product-card:hover .main-image{
+  opacity: 0;
+  transform: scale(1.05);
 }
+
+/* OVERLAY */
+.overlay{
+  position: absolute;
+  top: 20px;
+  right: -60px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: 0.4s;
+  z-index: 20;
+}
+
+.product-card:hover .overlay{
+  right: 20px;
+}
+
+.icon-btn{
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  color: #111;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.icon-btn:hover{
+  background: #111;
+  color: white;
+  transform: scale(1.1);
+}
+
 /* BADGES */
-.badge-new{
-  position:absolute;
-  top:15px;
-  left:15px;
-  background:black;
-  color:white;
-  padding:8px 14px;
-  border-radius:30px;
-  font-size:12px;
-  font-weight:bold;
-  z-index:10;
+.badges{
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.badge-new,
 .badge-discount{
-  position:absolute;
-  top:55px;
-  left:15px;
-  background:#ff6701;
-  color:white;
-  padding:8px 14px;
-  border-radius:30px;
-  font-size:12px;
-  font-weight:bold;
-  z-index:10;
+  padding: 9px 16px;
+  border-radius: 50px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.badge-new{
+  background: #111;
+}
+
+.badge-discount{
+  background:
+  linear-gradient(135deg,#ff6b00,#ff2d55);
 }
 
 /* CONTENT */
 .content{
-  padding:22px;
-  min-height:10%;
+  padding: 24px;
 }
 
-.content h3{
-  font-size:15px;
-  color:#999;
-  margin-bottom:8px;
+/* CATEGORY */
+.category{
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  margin-bottom: 12px;
 }
 
-.content p{
-  font-size:20px;
-  font-weight:600;
-  margin-bottom:20px;
-  color:#111;
+/* NAME */
+.product-name{
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 25px;
+  line-height: 1.3;
 }
-/* BOTTOM */
-.bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
+
+/* PRICE ROW */
+.price-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
-.bottom h4{
-  color:#ff6701;
-  font-size:20px;
-  margin:0;
+
+/* PRICE */
+.price-box{
+  display: flex;
+  flex-direction: column;
 }
-/* BUTTON */
-.bottom button{
-  border:none;
-  background:#111;
-  color:white;
-  padding:10px 18px;
-  border-radius:10px;
-  cursor:pointer;
-  transition:0.3s;
-  font-size:14px;
+
+.old-price{
+  color: #aaa;
+  text-decoration: line-through;
+  font-size: 14px;
 }
-.bottom button:hover{
-  background:#09b54d;
+
+.new-price{
+  font-size: 28px;
+  font-weight: 900;
+  background:
+  linear-gradient(135deg,#111,#444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-/* MOBILE */
-@media(max-width:576px){
-  .title{
-    font-size:24px;
-  }
-  .content{
-    padding:18px;
-  }
-  .content h4{
-    font-size:15px;
-  }
-  .bottom{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-  .bottom button{
-    width:100%;
-  }
+
+/* CART */
+.cart-btn{
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 18px;
+  background:
+  linear-gradient(135deg,#111,#333);
+  color: white;
+  font-size: 20px;
+  transition: 0.3s;
 }
+
+.cart-btn:hover{
+  transform: scale(1.08) rotate(-5deg);
+  background:
+  linear-gradient(135deg,#09b54d,#00d26a);
+}
+
 /* EMPTY */
 .empty{
-  width:100%;
-  height:300px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:30px;
-  color:gray;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #999;
 }
+
+/* TABLET */
+@media(max-width: 992px){
+
+  .title{
+    font-size: 30px;
+  }
+
+  .image-wrapper{
+    height: 280px;
+  }
+
+}
+
+/* MOBILE */
+@media(max-width: 576px){
+
+  .header-box{
+    align-items: start;
+  }
+
+  .title{
+    font-size: 22px;
+  }
+
+  .qty-box{
+    padding: 14px 18px;
+  }
+
+  .qty-box h3{
+    font-size: 22px;
+  }
+
+  .image-wrapper{
+    height: 220px;
+  }
+
+  .content{
+    padding: 16px;
+  }
+
+  .product-name{
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+
+  .new-price{
+    font-size: 20px;
+  }
+
+  .cart-btn{
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+    font-size: 16px;
+  }
+
+  .icon-btn{
+    width: 38px;
+    height: 38px;
+  }
+
+}
+
 </style>
