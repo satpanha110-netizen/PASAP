@@ -711,7 +711,7 @@ export const products = [
     id: 41,
     category_for : "Men",
     item : "Clothing",
-    type : "T-Shirts",
+    type : "T-Shirts ",
     isNewIn:false,
     image :[
       "https://zandokh.com/image/catalog/products/2026-17/21226011621/PTAK7260.jpg",

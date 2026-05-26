@@ -127,22 +127,24 @@
         <div class="offcanvas-header">
 
           <h5 class="offcanvas-title fw-bold">
-              <div
-        class="flex justify-center items-center
-        h-[50px] overflow-hidden"
-      >
 
-        <router-link to="/">
+            <div
+              class="flex justify-center items-center
+              h-[50px] overflow-hidden"
+            >
 
-          <img
-            src="../assets/logo.png"
-            alt="logo"
-            class="w-[80px] h-[80px] object-contain scale-150"
-          >
+              <router-link to="/">
 
-        </router-link>
+                <img
+                  src="../assets/logo.png"
+                  alt="logo"
+                  class="w-[80px] h-[80px] object-contain scale-150"
+                >
 
-      </div>
+              </router-link>
+
+            </div>
+
           </h5>
 
           <button
@@ -174,7 +176,8 @@
                   <div class="d-flex align-items-center gap-3">
 
                     <div
-                      class="rounded-circle bg-black text-white d-flex align-items-center justify-content-center fw-bold"
+                      class="rounded-circle bg-black text-white
+                      d-flex align-items-center justify-content-center fw-bold"
                       style="width:40px; height:40px;"
                     >
                       {{ men.name.charAt(0) }}
@@ -255,6 +258,27 @@
 
           </ul>
 
+          <!-- MOBILE AUTH -->
+          <div class="mt-4 d-flex flex-column gap-3">
+
+            <button
+              class="mobile-auth-btn login-mobile-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+            >
+              Login
+            </button>
+
+            <button
+              class="mobile-auth-btn register-mobile-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#registerModal"
+            >
+              Register
+            </button>
+
+          </div>
+
         </div>
 
       </div>
@@ -285,13 +309,14 @@
       <!-- SEARCH -->
       <div
         class="hidden lg:flex items-center
-        border rounded-full px-3 py-2
+        border px-3 py-2
         bg-white w-[220px]"
       >
 
         <i class="bi bi-search text-gray-500"></i>
 
         <input
+        v-model="search"
           type="search"
           placeholder="Search"
           class="outline-none px-2 text-sm
@@ -356,44 +381,183 @@
           </div>
 
         </div>
-
-        <i
-          class="bi bi-person lg:hidden cursor-pointer
-          hover:text-blue-600 transition"
-        ></i>
+         <button
+  class="desktop-register-btn"
+  data-bs-toggle="modal"
+  data-bs-target="#loginModal"
+  @click="activeTab = 'register'"
+>
+  <i class="bi bi-person lg:hidden cursor-pointer hover:text-blue-600 transition"> </i>
+</button>
+        
 
       </div>
 
-      <!-- BUTTON -->
+      <!-- DESKTOP BUTTON -->
       <div class="hidden lg:flex items-center gap-3">
 
         <button
-          class="border border-black
-          px-4 py-2 rounded-full
-          hover:bg-black hover:text-white transition"
+          class="desktop-login-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#loginModal"
         >
           Login
         </button>
 
-        <button
-          class="bg-black text-white
-          px-4 py-2 rounded-full
-          hover:bg-blue-600 transition border-0"
-        >
-          Register
-        </button>
+       <button
+  class="desktop-register-btn"
+  data-bs-toggle="modal"
+  data-bs-target="#loginModal"
+  @click="activeTab = 'register'"
+>
+  Register
+</button>
 
       </div>
 
     </div>
 
   </header>
+
+  <!-- LOGIN MODAL -->
+ <!-- AUTH MODAL -->
+  <!-- AUTH MODAL -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content zando-modal border-0">
+
+      <!-- CLOSE -->
+      <button
+        type="button"
+        class="btn-close zando-close"
+        data-bs-dismiss="modal"
+      ></button>
+
+      <div class="p-4 p-md-5">
+
+        <!-- TABS -->
+        <div class="d-flex gap-4 auth-tabs">
+
+          <button
+            class="auth-tab"
+            :class="{ active: activeTab === 'login' }"
+            @click="activeTab = 'login'"
+          >
+            LOGIN
+          </button>
+
+          <button
+            class="auth-tab"
+            :class="{ active: activeTab === 'register' }"
+            @click="activeTab = 'register'"
+          >
+            REGISTER
+          </button>
+
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div v-if="activeTab === 'login'" class="mt-5">
+
+          <div class="mb-4">
+            <label class="auth-label">Mobile number</label>
+            <input class="zando-input" placeholder="Enter phone number" />
+          </div>
+
+          <div class="mb-4 position-relative">
+            <label class="auth-label">Password</label>
+
+            <input
+              :type="showPassword ? 'text' : 'password'"
+              class="zando-input pe-5"
+              placeholder="Enter password"
+            />
+
+            <i
+              class="bi eye-icon"
+              :class="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+              @click="showPassword = !showPassword"
+            ></i>
+          </div>
+
+          <button class="zando-btn">LOGIN</button>
+
+          <div class="text-center mt-3">
+            <a class="forgot-link">Forgot your password?</a>
+          </div>
+
+          <div class="text-center my-4 or-text">OR</div>
+
+          <button class="social-login-btn">
+            <i class="bi bi-google"></i> Continue with Google
+          </button>
+
+          <button class="social-login-btn mt-3">
+            <i class="bi bi-facebook text-primary"></i> Continue with Facebook
+          </button>
+
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div v-else class="mt-2">
+
+          <div class="mb-3">
+            <label class="auth-label">Full name</label>
+            <input class="zando-input" placeholder="Enter full name" />
+          </div>
+
+          <div class="mb-3">
+            <label class="auth-label">Mobile number</label>
+            <input class="zando-input" placeholder="Enter phone number" />
+          </div>
+
+          <div class="mb-3">
+            <label class="auth-label">Email</label>
+            <input class="zando-input" placeholder="Enter email" />
+          </div>
+
+          <div class="mb-4 position-relative">
+            <label class="auth-label">Password</label>
+
+            <input
+              :type="showPassword ? 'text' : 'password'"
+              class="zando-input pe-5"
+              placeholder="Create password"
+            />
+
+            <i
+              class="bi eye-icon"
+              :class="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+              @click="showPassword = !showPassword"
+            ></i>
+          </div>
+
+          <button class="zando-btn mt-2">CREATE ACCOUNT</button>
+          <div class="text-center my-4 or-text">OR</div>
+
+          <button class="social-login-btn mt-2">
+            <i class="bi bi-google"></i> Continue with Google
+          </button>
+
+          <button class="social-login-btn mt-2">
+            <i class="bi bi-facebook text-primary"></i> Continue with Facebook
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
 </template>
 
 <script setup>
 import { ref } from "vue"
 import { menu } from "../data/menu_drown"
 import { Offcanvas } from "bootstrap"
+const activeTab = ref('login')
+const showPassword = ref(false)
 
 const activeMenu = ref(null)
 const offcanvasRef = ref(null)
@@ -436,24 +600,118 @@ const goMenu = () => {
   padding-left: 5px;
 }
 
-.mobile-link {
-  transition: 0.3s;
+.zando-modal{
+  border-radius: 2px;
+  background: #fff;
 }
 
-.mobile-link:hover {
-  color: #2563eb !important;
-  padding-left: 5px;
+.zando-close{
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  z-index: 10;
 }
 
-summary::-webkit-details-marker {
-  display: none;
+.auth-tabs{
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 14px;
 }
 
-details[open] .bi-chevron-down {
-  transform: rotate(180deg);
+.auth-tab{
+  border: none;
+  background: none;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 0;
+  position: relative;
 }
 
-.bi-chevron-down {
-  transition: 0.3s;
+.auth-tab.active::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  width: 100%;
+  height: 3px;
+  background: black;
+}
+
+.auth-label{
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.zando-input{
+  width: 100%;
+  height: 54px;
+  border: 1px solid #111;
+  padding: 0 16px;
+  outline: none;
+  font-size: 15px;
+}
+
+.zando-input:focus{
+  border-color: black;
+}
+
+.eye-icon{
+  position: absolute;
+  right: 18px;
+  top: 48px;
+  cursor: pointer;
+}
+
+.zando-btn{
+  width: 100%;
+  height: 54px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.zando-btn:hover{
+  opacity: .9;
+}
+
+.forgot-link{
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.or-text{
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.social-login-btn{
+  width: 100%;
+  height: 54px;
+  border: 1px solid #111;
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  font-size: 17px;
+
+  transition: .3s;
+}
+
+.social-login-btn:hover{
+  background: #f5f5f5;
+}
+
+.register-link{
+  color: black;
+  font-weight: 600;
+  margin-left: 5px;
+  text-decoration: none;
 }
 </style>

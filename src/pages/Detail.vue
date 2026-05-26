@@ -166,6 +166,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
+const activeTab = ref("login")
 
 import { products as productData, productWoman, productshop } from '../data/products'
 import { products as menuData } from '../data/menu_data'
