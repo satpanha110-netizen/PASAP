@@ -49,7 +49,7 @@ export const products = [
   {
     id: 1000,
     category_for: "Men",
-    type: "Regular T-Shirt",
+    type: " T-Shirt",
     isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0051.jpg",
@@ -77,11 +77,13 @@ export const products = [
     discount: 20,
    
   },
+  
   {
     id: 37,
     category_for : "Men",
     item : "Clothing",
-    type : "T-Shirts",
+    type : "Relaxed Short Sleeves Shirt",
+    
     isNewIn:false,
     image :[
       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0085.jpg",
@@ -99,6 +101,7 @@ export const products = [
     category_for : "Men",
     item : "Clothing",
     type : "T-Shirt",
+  
     isNewIn:false,
     image :[
       "https://zandokh.com/image/catalog/products/2026-05/11226011711/STU_2581.jpg",
@@ -132,7 +135,7 @@ export const products = [
     id: 40,
     category_for : "Men",
     item : "Clothing",
-    type : "T-Shirt",
+    type : "T-Shirts",
     isNewIn:false,
     image :[
       "https://zandokh.com/image/catalog/products/2026-05/21226021789/STU_5129.jpg",
@@ -142,14 +145,15 @@ export const products = [
       "https://zandokh.com/image/catalog/products/2026-05/21226021789/STU_5123.jpg"
     ],
     price:8,
-    discount:0,
+    discount:100,
     discription :"Oversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-ShirtOversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-Shirt Yellow Casual Short Sleeve Knitted Fabric Animal,Graphic,Letter,Slogan Non-Stretch Women Clothing, size features are:Bust: ,Length: ,Sleeve"
   },
   {
-    id: 41,
+    id: 42,
     category_for : "Men",
     item : "Clothing",
-    type : "T-Shirt",
+    type : "T-Shirts",
+  
     isNewIn:false,
     image :[
       "https://zandokh.com/image/catalog/products/2026-17/21226011621/PTAK7260.jpg",
@@ -159,11 +163,13 @@ export const products = [
       "https://zandokh.com/image/catalog/products/2026-17/21226011621/PTAK7257.jpg"
     ],
     price:8,
-    discount:0,
+    discount:100,
     discription :"Oversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-ShirtOversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-Shirt Yellow Casual Short Sleeve Knitted Fabric Animal,Graphic,Letter,Slogan Non-Stretch Women Clothing, size features are:Bust: ,Length: ,Sleeve"
   },
-  
-
+  /////////////////////////////==========
+  //.         Men Clothing.Polo Shirts    
+  ////////////////////////////===========
+    
   {
     id: 3000,
     category_for: "Men",

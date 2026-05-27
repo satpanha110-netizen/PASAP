@@ -33,22 +33,32 @@
       <div class="col-md-6">
 
         <!-- PRICE -->
-        <div class="d-flex align-items-center gap-3">
-          <h2 class="text-danger fw-bold mb-0">
+        <div class="d-flex align-items-center gap-3 ">
+          <h2 class="text-muted text-decoration-line-through">
             ${{ product.price }}
           </h2>
+         
 
-          <span class="text-muted text-decoration-line-through">
-            $45.59
-          </span>
 
-          <span class="badge bg-success px-3 py-2">-30%</span>
+           <span class="new-price text-danger fw-bold mb-0 ">
+                  $
+                  {{
+                    product.discount != 0
+                      ? (
+                          product.price -
+                          ((product.price * product.discount) / 100)
+                        ).toFixed(1)
+                      : product.price
+                  }}
+                </span>
+
+          <span class="badge bg-success px-3 py-2   ">{{ product.discount }}%</span>
         </div>
 
         <!-- TITLE -->
-        <h4 class="mt-2 fw-bold">
+        <span class="mt-2 fw-bold">
           {{ product.type }}
-        </h4>
+        </span>
 
         <p class="text-muted">
           Stylish product detail like Zando UI
@@ -124,7 +134,7 @@
         <!-- ACTION BUTTONS -->
         <div class="mt-4 d-flex gap-2">
 
-          <button class="btn btn-dark w-100 py-3">
+          <button class="btn btn-dark w-100 py-3" @click="addToCart">
             Add to Bag
           </button>
 
@@ -170,6 +180,11 @@ const activeTab = ref("login")
 
 import { products as productData, productWoman, productshop } from '../data/products'
 import { products as menuData } from '../data/menu_data'
+import { useCounterStore } from "../store/counter"
+const count = useCounterStore();
+const addToCart =()=>{
+  count.increment();
+} 
 
 const route = useRoute()
 const sizes = ['S', 'M', 'L', 'XL']

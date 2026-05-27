@@ -307,28 +307,24 @@
     <div class="flex items-center gap-3 lg:gap-5">
 
       <!-- SEARCH -->
-      <div
-        class="hidden lg:flex items-center
-        border px-3 py-2
-        bg-white w-[220px]"
-      >
+      <!-- DESKTOP SEARCH -->
+      <router-link
+  to="/search"
+  class="hidden lg:flex items-center border px-3 py-2 bg-white w-[220px] text-decoration-none"
+>
+  <i class="bi bi-search text-gray-500"></i>
 
-        <i class="bi bi-search text-gray-500"></i>
-
-        <input
-        v-model="search"
-          type="search"
-          placeholder="Search"
-          class="outline-none px-2 text-sm
-          w-full bg-transparent border-0"
-        >
-
-      </div>
+  <div class="px-2 text-sm w-full text-gray-500">
+    Search
+  </div>
+</router-link>
 
       <!-- ICONS -->
       <div class="flex items-center gap-3 md:gap-5 text-xl md:text-2xl">
-
-        <i class="bi bi-search lg:hidden cursor-pointer"></i>
+          <router-link to="/search"  class="border-0 bg-transparent text-black">
+                      
+            <i class="bi bi-search lg:hidden cursor-pointer"></i>
+          </router-link>
 
         <i
           class="bi bi-bell cursor-pointer
@@ -351,7 +347,7 @@
           <i
             class="bi bi-bag cursor-pointer
             hover:text-blue-600 transition"
-          ></i>
+          >{{ qty.count }}</i>
 
         </button>
 
@@ -556,12 +552,13 @@
 import { ref } from "vue"
 import { menu } from "../data/menu_drown"
 import { Offcanvas } from "bootstrap"
+import { useCounterStore } from "../store/counter"
 const activeTab = ref('login')
 const showPassword = ref(false)
 
 const activeMenu = ref(null)
 const offcanvasRef = ref(null)
-
+const qty = useCounterStore();
 const goMenu = () => {
   const offcanvas =
     Offcanvas.getOrCreateInstance(

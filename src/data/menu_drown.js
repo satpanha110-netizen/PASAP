@@ -87,7 +87,7 @@ export const menu = [
         item: [
           "All",
           "T-Shirts",
-          "Jumpsuits",
+          "Polo Shirts",
           "Blazers & Jackets",
           "Vests & Cardigans",
           "Hoodies & Sweatshirts",

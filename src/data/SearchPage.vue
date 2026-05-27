@@ -1,24 +1,29 @@
 <template>
   <div class="container-fluid py-4 px-lg-5 px-3">
 
-    <!-- HEADER -->
-    <div class="header-box mb-5">
+    <!-- SEARCH -->
+    <div class="search-box mb-5">
 
-      <div>
-        <p class="mini-title">DISCOVER COLLECTION</p>
+      <input
+        v-model="search"
+        type="text"
+        placeholder="Search category, item, type..."
+        class="search-input"
+      >
 
-        <h1 class="title">
-          {{ route.query.gender }}
-          <span>/</span>
-          {{ route.query.section }}
-          <span>/</span>
-          {{ route.query.category }}
-        </h1>
-      </div>
+      <i class="bi bi-search search-icon"></i>
+
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-box mb-4">
+
+      <h2 class="result-title">
+        Search Result
+      </h2>
 
       <div class="qty-box">
-        <h3>{{ qty }}</h3>
-        <p>Products Available</p>
+        {{ filteredProducts.length }} Products
       </div>
 
     </div>
@@ -96,16 +101,14 @@
           <!-- CONTENT -->
           <div class="content">
 
-            <!-- CATEGORY -->
             <p class="category">
               {{ product.category_for }}
             </p>
 
-            <!-- NAME -->
-            <p class="product-name">{{ product.type }}</p>
-            <!-- text -->
-             <h5 class="product-text">{{ product.text }}</h5>
-            <!-- PRICE -->
+            <h3 class="product-name">
+              {{ product.type }}
+            </h3>
+
             <div class="price-row">
 
               <div class="price-box">
@@ -131,10 +134,7 @@
 
               </div>
 
-              <button
-                class="cart-btn"
-                @click="addToCart"
-              >
+              <button class="cart-btn" @click="addToCart">
                 <i class="bi bi-bag-plus"></i>
               </button>
 
@@ -160,8 +160,7 @@
 </template>
 
 <script setup>
-import { computed, inject } from "vue"
-import { useRoute } from "vue-router"
+import { ref, computed } from "vue"
 import { products } from "../data/menu_data"
 import { useCounterStore } from "../store/counter"
 const count = useCounterStore();
@@ -169,68 +168,23 @@ const addToCart =()=>{
   count.increment();
 } 
 
-const route = useRoute()
+const search = ref("")
 
 const filteredProducts = computed(() => {
 
-  const category_for = route.query.gender?.toLowerCase()
-  const item = route.query.section?.toLowerCase()
-  const type = route.query.category?.toLowerCase()
+  return products.filter(product => {
 
-  let result = []
+    const keyword = search.value.toLowerCase()
 
-  for (let i = 0; i < products.length; i++) {
+    return (
+      product.category_for.toLowerCase().includes(keyword) ||
+      product.item.toLowerCase().includes(keyword) ||
+      product.type.toLowerCase().includes(keyword)
+    )
 
-    const product = products[i]
+  })
 
-    // CATEGORY
-    if (product.category_for.toLowerCase() !== category_for) {
-      continue
-    }
-
-    // NEW IN
-    if (item === "new in") {
-
-      if (!product.isNewIn) {
-        continue
-      }
-
-      if (type === "all") {
-        result.push(product)
-        continue
-      }
-
-      if (product.item.toLowerCase() === type) {
-        result.push(product)
-      }
-
-      continue
-    }
-
-    // NORMAL CATEGORY
-    if (product.item.toLowerCase() !== item) {
-      continue
-    }
-
-    // ALL TYPE
-    if (type === "all") {
-      result.push(product)
-      continue
-    }
-
-    // TYPE MATCH
-    if (product.type.toLowerCase() === type) {
-      result.push(product)
-    }
-
-  }
-
-  return result
 })
-
-const qty = computed(() => filteredProducts.value.length)
-
-const handleCount = inject("handleCount")
 </script>
 
 <style scoped>
@@ -242,56 +196,54 @@ const handleCount = inject("handleCount")
   min-height: 100vh;
 }
 
-/* HEADER */
-.header-box{
+/* SEARCH */
+.search-box{
+  position: relative;
+  max-width: 500px;
+}
+
+.search-input{
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 20px;
+  padding: 0 60px 0 24px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  outline: none;
+  font-size: 16px;
+}
+
+.search-icon{
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+}
+
+/* RESULT */
+.result-box{
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
 }
 
-.mini-title{
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: #888;
-  margin-bottom: 10px;
-}
-
-.title{
-  font-size: 42px;
+.result-title{
+  font-size: 38px;
   font-weight: 900;
-  color: #111;
   margin: 0;
-  text-transform: capitalize;
-  line-height: 1.2;
-}
-
-.title span{
-  color: #d0d0d0;
-  margin: 0 8px;
 }
 
 .qty-box{
   background: white;
-  padding: 18px 26px;
-  border-radius: 22px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-  text-align: center;
-}
-
-.qty-box h3{
-  margin: 0;
-  font-size: 30px;
-  font-weight: 900;
-  color: #111;
-}
-
-.qty-box p{
-  margin: 0;
-  color: #777;
-  font-size: 13px;
+  padding: 14px 22px;
+  border-radius: 18px;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
 /* CARD */
@@ -314,7 +266,7 @@ const handleCount = inject("handleCount")
 /* IMAGE */
 .image-wrapper{
   position: relative;
-  height: 450px;
+  height: 350px;
   overflow: hidden;
   background: #f3f4f8;
 }
@@ -425,20 +377,11 @@ const handleCount = inject("handleCount")
 
 /* NAME */
 .product-name{
-  font-size: 15px;
+  font-size: 22px;
   font-weight: 800;
-  color: #454444;
+  color: #111;
   margin-bottom: 25px;
   line-height: 1.3;
-  margin-bottom:5px;
-}
-.product-text{
-  font-size: 15px;
- 
-  color: #000000;
-  margin-bottom: 25px;
-  line-height: 1.3;
-  margin-bottom:5px;
 }
 
 /* PRICE ROW */
@@ -457,7 +400,6 @@ const handleCount = inject("handleCount")
 
 .old-price{
   color: #aaa;
-  margin-bottom: 20px;
   text-decoration: line-through;
   font-size: 14px;
 }
@@ -504,8 +446,8 @@ const handleCount = inject("handleCount")
 /* TABLET */
 @media(max-width: 992px){
 
-  .title{
-    font-size: 30px;
+  .result-title{
+    font-size: 28px;
   }
 
   .image-wrapper{
@@ -517,19 +459,7 @@ const handleCount = inject("handleCount")
 /* MOBILE */
 @media(max-width: 576px){
 
-  .header-box{
-    align-items: start;
-  }
-
-  .title{
-    font-size: 22px;
-  }
-
-  .qty-box{
-    padding: 14px 18px;
-  }
-
-  .qty-box h3{
+  .result-title{
     font-size: 22px;
   }
 
@@ -563,5 +493,4 @@ const handleCount = inject("handleCount")
   }
 
 }
-
 </style>
