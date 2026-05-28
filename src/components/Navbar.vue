@@ -308,19 +308,18 @@
 
       <!-- SEARCH -->
       <!-- DESKTOP SEARCH -->
-      <router-link
-  to="/search"
-  class="hidden lg:flex items-center border px-3 py-2 bg-white w-[220px] text-decoration-none"
->
-  <i class="bi bi-search text-gray-500"></i>
-
-  <div class="px-2 text-sm w-full text-gray-500">
-    Search
-  </div>
-</router-link>
+     
 
       <!-- ICONS -->
       <div class="flex items-center gap-3 md:gap-5 text-xl md:text-2xl">
+         
+
+           <router-link to="/search"  class=" hidden lg:flex border-0 bg-transparent text-black">
+                      
+            <i class="bi bi-search  hover:text-blue-600  cursor-pointer"></i>
+          </router-link>
+
+
           <router-link to="/search"  class="border-0 bg-transparent text-black">
                       
             <i class="bi bi-search lg:hidden cursor-pointer"></i>
@@ -347,7 +346,7 @@
           <i
             class="bi bi-bag cursor-pointer
             hover:text-blue-600 transition"
-          >{{ qty.count }}</i>
+          >{{ cart.totalItems }}</i>
 
         </button>
 
@@ -372,9 +371,123 @@
 
           </div>
 
-          <div class="offcanvas-body">
-            Your cart is empty.
-          </div>
+<div class="offcanvas-body d-flex flex-column">
+
+  <!-- EMPTY -->
+  <div
+    v-if="cart.carts.length === 0"
+    class="h-100 d-flex justify-content-center align-items-center text-secondary"
+  >
+    Your cart is empty.
+  </div>
+
+  <!-- CART ITEMS -->
+  <div
+    v-else
+    class="d-flex flex-column gap-4 h-100"
+  >
+
+    <!-- PRODUCT -->
+    <div
+      v-for="item in cart.carts"
+      :key="item.id"
+      class="d-flex gap-3 border-bottom pb-3"
+    >
+
+      <!-- IMAGE -->
+      <img
+        :src="item.image[0]"
+        class="cart-image"
+      >
+
+      <!-- CONTENT -->
+      <div class="flex-grow-1">
+
+        <h6 class="fw-bold mb-1">
+          {{ item.type }}
+        </h6>
+
+        <p class="text-secondary small mb-2">
+          {{ item.text }}
+        </p>
+
+        <!-- PRICE -->
+        <div class="fw-bold mb-3">
+          $
+          {{
+            item.discount != 0
+              ? (
+                  item.price -
+                  ((item.price * item.discount) / 100)
+                ).toFixed(1)
+              : item.price
+          }}
+        </div>
+
+        <!-- QTY -->
+        <div class="d-flex align-items-center gap-2">
+
+          <button
+            class="qty-btn"
+            @click="cart.decreaseQty(item.id)"
+          >
+            -
+          </button>
+
+          <span class="fw-bold">
+            {{ item.qty }}
+          </span>
+
+          <button
+            class="qty-btn"
+            @click="cart.increaseQty(item.id)"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- REMOVE -->
+      <button
+        class="remove-btn"
+        @click="cart.removeCart(item.id)"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="mt-auto pt-4">
+
+      <!-- TOTAL -->
+      <div
+        class="d-flex justify-content-between
+        align-items-center mb-4"
+      >
+
+        <h5 class="m-0 fw-bold">
+          Total
+        </h5>
+
+        <h5 class="m-0 fw-bold">
+          ${{ cart.totalPrice.toFixed(1) }}
+        </h5>
+
+      </div>
+
+      <!-- BUTTON -->
+      <button class="checkout-btn">
+        CHECKOUT
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
         </div>
          <button
@@ -552,13 +665,12 @@
 import { ref } from "vue"
 import { menu } from "../data/menu_drown"
 import { Offcanvas } from "bootstrap"
-import { useCounterStore } from "../store/counter"
+import { useCartStore } from "../store/cart"
 const activeTab = ref('login')
 const showPassword = ref(false)
-
 const activeMenu = ref(null)
 const offcanvasRef = ref(null)
-const qty = useCounterStore();
+const cart = useCartStore();
 const goMenu = () => {
   const offcanvas =
     Offcanvas.getOrCreateInstance(
@@ -710,5 +822,54 @@ const goMenu = () => {
   font-weight: 600;
   margin-left: 5px;
   text-decoration: none;
+}
+/* CART */
+.cart-image{
+  width: 90px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f3f3f3;
+}
+
+.qty-btn{
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.qty-btn:hover{
+  background: black;
+  color: white;
+}
+
+.remove-btn{
+  border: none;
+  background: transparent;
+  color: #999;
+  transition: .3s;
+}
+
+.remove-btn:hover{
+  color: red;
+}
+
+.checkout-btn{
+  width: 100%;
+  height: 55px;
+  border: none;
+  background: black;
+  color: white;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: .3s;
+}
+
+.checkout-btn:hover{
+  opacity: .9;
 }
 </style>

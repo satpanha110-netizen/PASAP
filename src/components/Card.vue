@@ -10,13 +10,6 @@
       
       </div>
 
-      <button
-        class="hidden md:block px-6 py-3 border border-black
-               rounded-full hover:bg-black hover:text-white
-               transition duration-300"
-      >
-        View All
-      </button>
     </div>
 
     <!-- Product Slider -->
@@ -102,15 +95,7 @@
               ${{ item.price }}
             </span>
 
-            <button
-              class="px-4 py-2 text-sm
-                     rounded-full
-                     border border-black
-                     hover:bg-black hover:text-white
-                     transition duration-300"
-            >
-              Add
-            </button>
+          
 
           </div>
         </div>
@@ -195,14 +180,6 @@
 
        
       </div>
-
-      <button
-        class="hidden md:block px-6 py-3 border border-black
-               rounded-full hover:bg-black hover:text-white
-               transition duration-300"
-      >
-        View All
-      </button>
     </div>
 
     <!-- Product Slider -->
@@ -295,15 +272,7 @@
               ${{ item.price }}
             </span>
 
-            <button
-              class="px-4 py-2 text-sm
-                     rounded-full
-                     border border-black
-                     hover:bg-black hover:text-white
-                     transition duration-300"
-            >
-              Add
-            </button>
+         
 
           </div>
         </div>
@@ -326,13 +295,7 @@
        
       </div>
 
-      <button
-        class="hidden md:block px-6 py-3 border border-black
-               rounded-full hover:bg-black hover:text-white
-               transition duration-300"
-      >
-        View All
-      </button>
+     
     </div>
 
     <!-- Product Slider -->
@@ -424,15 +387,7 @@
               ${{ item.price }}
             </span>
 
-            <button
-              class="px-4 py-2 text-sm
-                     rounded-full
-                     border border-black
-                     hover:bg-black hover:text-white
-                     transition duration-300"
-            >
-              Add
-            </button>
+           
 
           </div>
         </div>

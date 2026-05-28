@@ -102,9 +102,15 @@
             </p>
 
             <!-- NAME -->
-            <p class="product-name">{{ product.type }}</p>
-            <!-- text -->
-             <h5 class="product-text">{{ product.text }}</h5>
+            <p class="product-name">
+              {{ product.type }}
+            </p>
+
+            <!-- TEXT -->
+            <h5 class="product-text">
+              {{ product.text }}
+            </h5>
+
             <!-- PRICE -->
             <div class="price-row">
 
@@ -131,9 +137,10 @@
 
               </div>
 
+              <!-- ADD TO CART -->
               <button
                 class="cart-btn"
-                @click="addToCart"
+                @click="addToCart(product)"
               >
                 <i class="bi bi-bag-plus"></i>
               </button>
@@ -160,22 +167,33 @@
 </template>
 
 <script setup>
-import { computed, inject } from "vue"
+import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { products } from "../data/menu_data"
-import { useCounterStore } from "../store/counter"
-const count = useCounterStore();
-const addToCart =()=>{
-  count.increment();
-} 
+import { useCartStore } from "../store/cart"
 
+// ROUTE
 const route = useRoute()
 
+// PINIA
+const cart = useCartStore()
+
+// ADD TO CART
+const addToCart = (product) => {
+  cart.addToCart(product)
+}
+
+// FILTER PRODUCTS
 const filteredProducts = computed(() => {
 
-  const category_for = route.query.gender?.toLowerCase()
-  const item = route.query.section?.toLowerCase()
-  const type = route.query.category?.toLowerCase()
+  const category_for =
+    route.query.gender?.toLowerCase()
+
+  const item =
+    route.query.section?.toLowerCase()
+
+  const type =
+    route.query.category?.toLowerCase()
 
   let result = []
 
@@ -184,7 +202,10 @@ const filteredProducts = computed(() => {
     const product = products[i]
 
     // CATEGORY
-    if (product.category_for.toLowerCase() !== category_for) {
+    if (
+      product.category_for.toLowerCase()
+      !== category_for
+    ) {
       continue
     }
 
@@ -200,7 +221,9 @@ const filteredProducts = computed(() => {
         continue
       }
 
-      if (product.item.toLowerCase() === type) {
+      if (
+        product.item.toLowerCase() === type
+      ) {
         result.push(product)
       }
 
@@ -208,18 +231,22 @@ const filteredProducts = computed(() => {
     }
 
     // NORMAL CATEGORY
-    if (product.item.toLowerCase() !== item) {
+    if (
+      product.item.toLowerCase() !== item
+    ) {
       continue
     }
 
-    // ALL TYPE
+    // ALL
     if (type === "all") {
       result.push(product)
       continue
     }
 
     // TYPE MATCH
-    if (product.type.toLowerCase() === type) {
+    if (
+      product.type.toLowerCase() === type
+    ) {
       result.push(product)
     }
 
@@ -228,9 +255,10 @@ const filteredProducts = computed(() => {
   return result
 })
 
-const qty = computed(() => filteredProducts.value.length)
-
-const handleCount = inject("handleCount")
+// TOTAL PRODUCT
+const qty = computed(() =>
+  filteredProducts.value.length
+)
 </script>
 
 <style scoped>
@@ -253,7 +281,7 @@ const handleCount = inject("handleCount")
 
 .mini-title{
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 200;
   letter-spacing: 3px;
   color: #888;
   margin-bottom: 10px;
@@ -314,7 +342,7 @@ const handleCount = inject("handleCount")
 /* IMAGE */
 .image-wrapper{
   position: relative;
-  height: 450px;
+  height: 400px;
   overflow: hidden;
   background: #f3f4f8;
 }
@@ -392,7 +420,7 @@ const handleCount = inject("handleCount")
 
 .badge-new,
 .badge-discount{
-  padding: 9px 16px;
+  padding: 1px 8px;
   border-radius: 50px;
   color: white;
   font-size: 12px;
@@ -428,17 +456,23 @@ const handleCount = inject("handleCount")
   font-size: 15px;
   font-weight: 800;
   color: #454444;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   line-height: 1.3;
-  margin-bottom:5px;
+  max-lines: 1;
+   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 .product-text{
   font-size: 15px;
- 
-  color: #000000;
+  color: #000;
   margin-bottom: 25px;
   line-height: 1.3;
-  margin-bottom:5px;
+   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-lines: 1;
 }
 
 /* PRICE ROW */
@@ -457,7 +491,7 @@ const handleCount = inject("handleCount")
 
 .old-price{
   color: #aaa;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   text-decoration: line-through;
   font-size: 14px;
 }
@@ -465,6 +499,7 @@ const handleCount = inject("handleCount")
 .new-price{
   font-size: 28px;
   font-weight: 900;
+  margin-top: 3px;
   background:
   linear-gradient(135deg,#111,#444);
   -webkit-background-clip: text;
@@ -563,5 +598,4 @@ const handleCount = inject("handleCount")
   }
 
 }
-
 </style>

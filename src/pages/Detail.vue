@@ -61,7 +61,7 @@
         </span>
 
         <p class="text-muted">
-          Stylish product detail like Zando UI
+          {{ product.text }}
         </p>
 
         <!-- COLOR VARIANTS -->
@@ -134,7 +134,7 @@
         <!-- ACTION BUTTONS -->
         <div class="mt-4 d-flex gap-2">
 
-          <button class="btn btn-dark w-100 py-3" @click="addToCart">
+          <button class="btn btn-dark w-100 py-3" @click="addToCart(product)">
             Add to Bag
           </button>
 
@@ -180,11 +180,12 @@ const activeTab = ref("login")
 
 import { products as productData, productWoman, productshop } from '../data/products'
 import { products as menuData } from '../data/menu_data'
-import { useCounterStore } from "../store/counter"
-const count = useCounterStore();
-const addToCart =()=>{
-  count.increment();
-} 
+import { useCartStore } from '../store/cart'
+const cart = useCartStore()
+// ADD TO CART
+const addToCart = (product) => {
+  cart.addToCart(product)
+}
 
 const route = useRoute()
 const sizes = ['S', 'M', 'L', 'XL']

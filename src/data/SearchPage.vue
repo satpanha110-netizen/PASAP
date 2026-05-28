@@ -2,13 +2,13 @@
   <div class="container-fluid py-4 px-lg-5 px-3">
 
     <!-- SEARCH -->
-    <div class="search-box mb-5">
+    <div class="search-box mb-5 ">
 
       <input
         v-model="search"
         type="text"
         placeholder="Search category, item, type..."
-        class="search-input"
+        class="search-input  "
       >
 
       <i class="bi bi-search search-icon"></i>
@@ -101,14 +101,16 @@
           <!-- CONTENT -->
           <div class="content">
 
+            <!-- CATEGORY -->
             <p class="category">
               {{ product.category_for }}
             </p>
 
-            <h3 class="product-name">
-              {{ product.type }}
-            </h3>
-
+            <!-- NAME -->
+            <p class="product-name">{{ product.type }}</p>
+            <!-- text -->
+             <p class="product-text">{{ product.text }}</p>
+            <!-- PRICE -->
             <div class="price-row">
 
               <div class="price-box">
@@ -134,7 +136,10 @@
 
               </div>
 
-              <button class="cart-btn" @click="addToCart">
+              <button
+                class="cart-btn"
+                @click="addToCart(product)"
+              >
                 <i class="bi bi-bag-plus"></i>
               </button>
 
@@ -162,11 +167,13 @@
 <script setup>
 import { ref, computed } from "vue"
 import { products } from "../data/menu_data"
-import { useCounterStore } from "../store/counter"
-const count = useCounterStore();
-const addToCart =()=>{
-  count.increment();
-} 
+import { useCartStore } from "../store/cart"
+const cart = useCartStore()
+
+// ADD TO CART
+const addToCart = (product) => {
+  cart.addToCart(product)
+}
 
 const search = ref("")
 
@@ -199,7 +206,9 @@ const filteredProducts = computed(() => {
 /* SEARCH */
 .search-box{
   position: relative;
-  max-width: 500px;
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
 }
 
 .search-input{
@@ -248,17 +257,16 @@ const filteredProducts = computed(() => {
 
 /* CARD */
 .product-card{
-  position: relative;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 28px;
   background: white;
-  transition: 0.5s;
+  transition: 0.4s;
   box-shadow:
   0 10px 35px rgba(0,0,0,0.06);
 }
 
 .product-card:hover{
-  transform: translateY(-12px);
+  transform: translateY(-10px);
   box-shadow:
   0 22px 50px rgba(0,0,0,0.12);
 }
@@ -266,7 +274,7 @@ const filteredProducts = computed(() => {
 /* IMAGE */
 .image-wrapper{
   position: relative;
-  height: 350px;
+  height: 400px;
   overflow: hidden;
   background: #f3f4f8;
 }
@@ -277,8 +285,7 @@ const filteredProducts = computed(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  top: 0;
-  left: 0;
+  inset: 0;
   transition: 0.6s;
 }
 
@@ -344,10 +351,10 @@ const filteredProducts = computed(() => {
 
 .badge-new,
 .badge-discount{
-  padding: 9px 16px;
+  padding: 5px 12px;
   border-radius: 50px;
   color: white;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   width: fit-content;
 }
@@ -363,7 +370,7 @@ const filteredProducts = computed(() => {
 
 /* CONTENT */
 .content{
-  padding: 24px;
+  padding: 20px;
 }
 
 /* CATEGORY */
@@ -372,19 +379,35 @@ const filteredProducts = computed(() => {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-/* NAME */
+/* PRODUCT NAME */
 .product-name{
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 4px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* PRODUCT TEXT */
+.product-text{
   font-size: 22px;
   font-weight: 800;
   color: #111;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   line-height: 1.3;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* PRICE ROW */
+/* PRICE */
 .price-row{
   display: flex;
   justify-content: space-between;
@@ -392,7 +415,6 @@ const filteredProducts = computed(() => {
   gap: 12px;
 }
 
-/* PRICE */
 .price-box{
   display: flex;
   flex-direction: column;
@@ -405,29 +427,29 @@ const filteredProducts = computed(() => {
 }
 
 .new-price{
-  font-size: 28px;
-  font-weight: 900;
+  font-size: 22px;
+  font-weight: 700;
   background:
-  linear-gradient(135deg,#111,#444);
+  linear-gradient(135deg,#ff5f6d,#444);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* CART */
+/* CART BTN */
 .cart-btn{
-  width: 55px;
-  height: 55px;
+  width: 52px;
+  height: 52px;
   border: none;
-  border-radius: 18px;
+  border-radius: 16px;
   background:
   linear-gradient(135deg,#111,#333);
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   transition: 0.3s;
 }
 
 .cart-btn:hover{
-  transform: scale(1.08) rotate(-5deg);
+  transform: scale(1.08);
   background:
   linear-gradient(135deg,#09b54d,#00d26a);
 }
@@ -451,7 +473,7 @@ const filteredProducts = computed(() => {
   }
 
   .image-wrapper{
-    height: 280px;
+    height: 300px;
   }
 
 }
@@ -459,8 +481,18 @@ const filteredProducts = computed(() => {
 /* MOBILE */
 @media(max-width: 576px){
 
+  .search-input{
+    height: 52px;
+    font-size: 14px;
+  }
+
   .result-title{
     font-size: 22px;
+  }
+
+  .qty-box{
+    padding: 10px 16px;
+    font-size: 14px;
   }
 
   .image-wrapper{
@@ -468,29 +500,33 @@ const filteredProducts = computed(() => {
   }
 
   .content{
-    padding: 16px;
+    padding: 14px;
   }
 
   .product-name{
+    font-size: 13px;
+  }
+
+  .product-text{
     font-size: 16px;
-    margin-bottom: 18px;
   }
 
   .new-price{
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .cart-btn{
-    width: 45px;
-    height: 45px;
-    border-radius: 14px;
-    font-size: 16px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 15px;
   }
 
   .icon-btn{
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
 
 }
+
 </style>

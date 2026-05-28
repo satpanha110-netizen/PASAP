@@ -49,7 +49,7 @@ export const products = [
   {
     id: 1000,
     category_for: "Men",
-    type: " T-Shirt",
+    type: " Relaxed Short",
     isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/3122602016/PTAK0051.jpg",
@@ -66,7 +66,7 @@ export const products = [
   {
     id: 2000,
     category_for: "Men",
-    type: "T-Shirts",
+    type: "T-Shirt",
     isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/4122601555/10S26TSS020_Navy%20(1).jpg",
@@ -82,9 +82,9 @@ export const products = [
     id: 37,
     category_for : "Men",
     item : "Clothing",
-    type : "Relaxed Short Sleeves Shirt",
+    type : "Relaxed Short",
     
-    isNewIn:false,
+    isNewIn:true,
     image :[
       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0085.jpg",
       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0088.jpg",
@@ -93,16 +93,16 @@ export const products = [
       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0080.jpg"
     ],
     price:12,
-    discount:0,
+    discount:10,
     discription :"Oversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-ShirtOversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-Shirt Yellow Casual Short Sleeve Knitted Fabric Animal,Graphic,Letter,Slogan Non-Stretch Women Clothing, size features are:Bust: ,Length: ,Sleeve"
   },
    {
     id: 38,
     category_for : "Men",
     item : "Clothing",
-    type : "T-Shirt",
+    type : "Sleeves Shirt",
   
-    isNewIn:false,
+    isNewIn:true,
     image :[
       "https://zandokh.com/image/catalog/products/2026-05/11226011711/STU_2581.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/11226011711/STU_2585.jpg",
@@ -111,7 +111,7 @@ export const products = [
       "https://zandokh.com/image/catalog/products/2026-05/11226011711/STU_2573.jpg"
     ],
     price:8,
-    discount:0,
+    discount:10,
     discription :"Oversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-ShirtOversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-Shirt Yellow Casual Short Sleeve Knitted Fabric Animal,Graphic,Letter,Slogan Non-Stretch Women Clothing, size features are:Bust: ,Length: ,Sleeve"
   },
   {
@@ -119,7 +119,7 @@ export const products = [
     category_for : "Men",
     item : "Clothing",
     type : "T-Shirt",
-    isNewIn:false,
+    isNewIn:true,
     image :[
       "https://zandokh.com/image/catalog/products/51272511002/STU_4708.jpg",
       "https://zandokh.com/image/catalog/products/51272511002/STU_4708.jpg",
@@ -128,15 +128,15 @@ export const products = [
       "https://zandokh.com/image/catalog/products/51272511002/STU_4690.jpg"
     ],
     price:8,
-    discount:0,
+    discount:10,
     discription :"Oversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-ShirtOversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-Shirt Yellow Casual Short Sleeve Knitted Fabric Animal,Graphic,Letter,Slogan Non-Stretch Women Clothing, size features are:Bust: ,Length: ,Sleeve"
   },
   {
     id: 40,
     category_for : "Men",
     item : "Clothing",
-    type : "T-Shirts",
-    isNewIn:false,
+    type : "Sleeves Shirt",
+    isNewIn:true,
     image :[
       "https://zandokh.com/image/catalog/products/2026-05/21226021789/STU_5129.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/21226021789/STU_5134.jpg",
@@ -154,7 +154,7 @@ export const products = [
     item : "Clothing",
     type : "T-Shirts",
   
-    isNewIn:false,
+    isNewIn:true,
     image :[
       "https://zandokh.com/image/catalog/products/2026-17/21226011621/PTAK7260.jpg",
       "https://zandokh.com/image/catalog/products/2026-17/21226011621/PTAK7268.jpg",
@@ -163,7 +163,7 @@ export const products = [
       "https://zandokh.com/image/catalog/products/2026-17/21226011621/PTAK7257.jpg"
     ],
     price:8,
-    discount:100,
+    discount:10,
     discription :"Oversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-ShirtOversized Mid-Length Women's Crew Neck GOODLIFE Embroidered T-Shirt Yellow Casual Short Sleeve Knitted Fabric Animal,Graphic,Letter,Slogan Non-Stretch Women Clothing, size features are:Bust: ,Length: ,Sleeve"
   },
   /////////////////////////////==========
@@ -173,7 +173,7 @@ export const products = [
   {
     id: 3000,
     category_for: "Men",
-    type: "Stripe Long Sleeves Shirt",
+    type: "Stripe Long",
     isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-17/2112602860/PTAK0085.jpg",
@@ -207,7 +207,7 @@ export const products = [
     id: 5000,
     category_for: "Men",
     type: "Loose Fitted Shirt",
-    isNewIn: false,
+    isNewIn: true,
     image: ["https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0045.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0036.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/11226041927/AV8A0043.jpg",
@@ -222,7 +222,7 @@ export const products = [
     id: 6000,
     category_for: "Men",
     type: "Regular Polo Shirt",
-    isNewIn: false,
+    isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0040.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/3112602042/AV8A0048.jpg",
@@ -238,7 +238,7 @@ export const products = [
     id: 7000,
     category_for: "Women",
     type: "Knitted Polo Shirt",
-    isNewIn: false,
+    isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9112.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/3222602694/STU_9113.jpg",
@@ -253,8 +253,8 @@ export const products = [
     {
     id: 8000,
     category_for: "Women",
-    type: "Stripe Polo Shirt With Zip",
-    isNewIn: false,
+    type: "Stripe Polo ",
+    isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7058.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/12225122548/STU_7064.jpg",
@@ -269,8 +269,8 @@ export const products = [
     {
     id: 9000,
     category_for: "Men",
-    type: "Vintage Wash T-Shirt",
-    isNewIn: false,
+    type: " Wash T-Shirt",
+    isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/21225091542/AV8A9996.jpg"
     ],
@@ -281,8 +281,8 @@ export const products = [
     {
     id: 10001,
     category_for: "Women",
-    type: "Floral Maxi Dress",
-    isNewIn: false,
+    type: " Maxi Dress",
+    isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/12226022682/STU_5860.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/12226022682/STU_5863.jpg",
@@ -298,7 +298,7 @@ export const products = [
     id: 1100,
     category_for: "Men",
     type: "Relaxed Fitted Shirt",
-    isNewIn: false,
+    isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/4122605537/10S26SHS027%20-%20Rainy%20Day%20(4).jpg",
       "https://zandokh.com/image/catalog/products/2026-05/4122512471/10S26POL002P%20-%20Crystal%20Gray%20(2).jpg",
@@ -314,7 +314,7 @@ export const products = [
     id: 1200,
     category_for: "Women",
     type: "Graphic Printed T-Shir",
-    isNewIn: false,
+    isNewIn: true,
     image: [
       "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4847.jpg",
       "https://zandokh.com/image/catalog/products/2026-05/22226022337/STU_4847.jpg",
