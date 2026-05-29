@@ -506,7 +506,7 @@
       <div class="hidden lg:flex items-center gap-3">
 
         <button
-          class="   desktop-login-btn"
+          class=" btn btn-outline-secondary  desktop-login-btn"
           data-bs-toggle="modal"
           data-bs-target="#loginModal"
         >
