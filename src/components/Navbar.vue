@@ -506,7 +506,7 @@
       <div class="hidden lg:flex items-center gap-3">
 
         <button
-          class="desktop-login-btn"
+          class="   desktop-login-btn"
           data-bs-toggle="modal"
           data-bs-target="#loginModal"
         >
@@ -514,7 +514,7 @@
         </button>
 
        <button
-  class="desktop-register-btn"
+  class=" btn btn-outline-secondary desktop-register-btn"
   data-bs-toggle="modal"
   data-bs-target="#loginModal"
   @click="activeTab = 'register'"
@@ -549,7 +549,7 @@
         <div class="d-flex gap-4 auth-tabs">
 
           <button
-            class="auth-tab"
+            class="auth-tab "
             :class="{ active: activeTab === 'login' }"
             @click="activeTab = 'login'"
           >
@@ -557,7 +557,7 @@
           </button>
 
           <button
-            class="auth-tab"
+            class="auth-tab "
             :class="{ active: activeTab === 'register' }"
             @click="activeTab = 'register'"
           >
